@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dominica Trip Itinerary 🐋🌴 | Apr 21–25, 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#0c6b58;--primary-light:#e8f5f1;--accent:#f0a500;--dark:#1a1a2e;
+  --text:#2d3436;--text-light:#636e72;--bg:#fafbfc;--white:#fff;
+  --whale:#1a5276;--ocean:#2980b9;--forest:#27ae60;--sunset:#e74c3c;
+  --radius:16px;--shadow:0 4px 24px rgba(0,0,0,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.7;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Playfair Display',serif;font-weight:600}
+
+/* Hero */
+.hero{position:relative;height:100vh;min-height:600px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(12,107,88,.85),rgba(26,82,118,.85)),url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1600') center/cover;z-index:0}
+.hero-content{position:relative;z-index:1;max-width:800px;padding:2rem}
+.hero h1{font-size:clamp(2.5rem,6vw,4.5rem);margin-bottom:.5rem;letter-spacing:-1px;animation:fadeInUp .8s ease}
+.hero .subtitle{font-size:clamp(1.1rem,2.5vw,1.5rem);font-weight:300;opacity:.9;margin-bottom:1rem;animation:fadeInUp .8s ease .2s both}
+.hero .dates{font-size:1.1rem;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);display:inline-block;padding:.6rem 2rem;border-radius:50px;animation:fadeInUp .8s ease .4s both}
+.hero .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-12px)}}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+/* Nav tabs */
+.nav{position:sticky;top:0;z-index:100;background:var(--white);border-bottom:1px solid #e8e8e8;display:flex;justify-content:center;gap:.5rem;padding:.75rem 1rem;flex-wrap:wrap;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.nav a{text-decoration:none;color:var(--text-light);font-weight:500;font-size:.9rem;padding:.5rem 1.2rem;border-radius:50px;transition:all .3s}
+.nav a:hover,.nav a.active{background:var(--primary);color:#fff}
+
+/* Sections */
+section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
+.section-title{font-size:2.2rem;margin-bottom:.5rem;color:var(--dark)}
+.section-subtitle{color:var(--text-light);font-size:1.05rem;margin-bottom:2.5rem}
+
+/* Cards */
+.card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.12)}
+.card img{width:100%;height:220px;object-fit:cover}
+.card-body{padding:1.5rem}
+.card-body h3{font-size:1.3rem;margin-bottom:.5rem}
+.card-body p{color:var(--text-light);font-size:.95rem}
+
+/* Grid */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+
+/* Summary stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:2rem 0}
+.stat{text-align:center;padding:1.5rem;background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow)}
+.stat .number{font-size:2.5rem;font-family:'Playfair Display',serif;color:var(--primary);font-weight:700}
+.stat .label{font-size:.85rem;color:var(--text-light);text-transform:uppercase;letter-spacing:1px;margin-top:.25rem}
+
+/* Timeline */
+.timeline{position:relative;padding-left:3rem}
+.timeline::before{content:'';position:absolute;left:14px;top:0;bottom:0;width:3px;background:linear-gradient(var(--primary),var(--ocean),var(--forest))}
+.day-block{position:relative;margin-bottom:3rem;animation:fadeIn .6s ease}
+.day-block::before{content:'';position:absolute;left:-3rem;top:.5rem;width:28px;height:28px;background:var(--primary);border:4px solid var(--white);border-radius:50%;box-shadow:0 0 0 4px var(--primary-light);z-index:1}
+.day-header{display:flex;align-items:baseline;gap:1rem;margin-bottom:1rem;flex-wrap:wrap}
+.day-label{font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--primary);background:var(--primary-light);padding:.3rem .8rem;border-radius:50px}
+.day-date{font-size:1rem;color:var(--text-light)}
+.day-title{font-size:1.8rem;color:var(--dark);margin-bottom:.75rem}
+.activity{background:var(--white);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:1rem;box-shadow:0 2px 12px rgba(0,0,0,.05);border-left:4px solid var(--primary);display:flex;gap:1rem;align-items:flex-start}
+.activity .time{font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--primary);white-space:nowrap;min-width:70px;padding-top:2px}
+.activity .details h4{font-size:1.05rem;margin-bottom:.25rem}
+.activity .details p{font-size:.9rem;color:var(--text-light)}
+.activity.whale{border-left-color:var(--whale)}
+.activity.ocean{border-left-color:var(--ocean)}
+.activity.forest{border-left-color:var(--forest)}
+.activity.sunset{border-left-color:var(--sunset)}
+.activity.accent{border-left-color:var(--accent)}
+
+/* Tags */
+.tag{display:inline-block;font-size:.75rem;padding:.2rem .6rem;border-radius:50px;margin-right:.4rem;margin-top:.4rem;font-weight:500}
+.tag-whale{background:#eaf2f8;color:var(--whale)}
+.tag-dive{background:#e8f8f5;color:var(--primary)}
+.tag-hike{background:#eafaf1;color:var(--forest)}
+.tag-food{background:#fef9e7;color:#b7950b}
+.tag-flight{background:#fdebd0;color:#ca6f1e}
+
+/* Map */
+#map{height:500px;border-radius:var(--radius);box-shadow:var(--shadow);margin:2rem 0}
+
+/* Hotels */
+.hotel-card{display:grid;grid-template-columns:300px 1fr;border-radius:var(--radius);overflow:hidden;background:var(--white);box-shadow:var(--shadow);margin-bottom:1.5rem}
+.hotel-card img{width:100%;height:100%;min-height:250px;object-fit:cover}
+.hotel-info{padding:2rem}
+.hotel-info h3{font-size:1.5rem;margin-bottom:.5rem}
+.hotel-info .price{font-size:1.3rem;font-weight:600;color:var(--primary);margin:.75rem 0}
+.hotel-info .amenities{display:flex;flex-wrap:wrap;gap:.5rem;margin:.75rem 0}
+.amenity{font-size:.8rem;padding:.3rem .7rem;background:var(--primary-light);border-radius:50px;color:var(--primary)}
+.hotel-badge{display:inline-block;font-size:.7rem;padding:.2rem .6rem;border-radius:50px;font-weight:600;margin-right:.5rem}
+.badge-top{background:#f0a500;color:#fff}
+.badge-value{background:var(--forest);color:#fff}
+.badge-luxury{background:var(--whale);color:#fff}
+
+/* Photos grid */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:1rem;margin:2rem 0}
+.photo-grid img{width:100%;height:200px;object-fit:cover;border-radius:12px;transition:transform .3s}
+.photo-grid img:hover{transform:scale(1.03)}
+
+/* Flight card */
+.flight-card{background:var(--white);border-radius:var(--radius);padding:1.5rem 2rem;box-shadow:var(--shadow);margin-bottom:1rem;display:flex;align-items:center;gap:2rem;flex-wrap:wrap}
+.flight-card .route{display:flex;align-items:center;gap:1rem;flex:1}
+.flight-card .airport{text-align:center}
+.flight-card .airport .code{font-size:1.5rem;font-weight:700;font-family:'Playfair Display',serif;color:var(--dark)}
+.flight-card .airport .city{font-size:.8rem;color:var(--text-light)}
+.flight-card .arrow{font-size:1.5rem;color:var(--primary)}
+.flight-card .flight-info{font-size:.85rem;color:var(--text-light)}
+.flight-card .flight-info strong{color:var(--text);display:block}
+
+/* Practical info */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+.info-item{background:var(--white);border-radius:var(--radius);padding:1.5rem;box-shadow:var(--shadow)}
+.info-item h4{color:var(--primary);margin-bottom:.5rem;font-size:1.1rem}
+.info-item p,.info-item ul{font-size:.9rem;color:var(--text-light)}
+.info-item ul{padding-left:1.2rem}
+.info-item ul li{margin-bottom:.3rem}
+
+/* Responsive */
+@media(max-width:768px){
+  .hotel-card{grid-template-columns:1fr}
+  .hotel-card img{height:200px}
+  .flight-card{flex-direction:column;text-align:center;gap:1rem;padding:1.25rem}
+  .timeline{padding-left:2.2rem}
+  .timeline::before{left:10px}
+  .day-block::before{left:-2.2rem;width:22px;height:22px}
+  section{padding:2.5rem 1rem}
+  .hero{min-height:500px;height:auto;padding:4rem 0}
+  .hero h1{font-size:2.5rem}
+  .hero .subtitle{font-size:1rem}
+  .hero .dates{font-size:.9rem;padding:.5rem 1.2rem}
+  .section-title{font-size:1.6rem}
+  .day-title{font-size:1.4rem}
+  .stats{grid-template-columns:repeat(2,1fr);gap:1rem}
+  .stat .number{font-size:2rem}
+  .grid-2,.grid-3{grid-template-columns:1fr}
+  .card img{height:180px}
+  .activity{flex-direction:column;gap:.5rem;padding:1rem}
+  .activity .time{min-width:auto}
+  .nav{gap:.25rem;padding:.5rem .75rem}
+  .nav a{font-size:.8rem;padding:.4rem .8rem}
+  .info-grid{grid-template-columns:1fr}
+  #mapContainer{height:350px !important}
+  .photo-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .stats{grid-template-columns:1fr}
+  .nav a{font-size:.75rem;padding:.35rem .6rem}
+  .hotel-info{padding:1.25rem}
+  .hotel-info h3{font-size:1.2rem}
+  .flight-card .airport .code{font-size:1.2rem}
+}
+
+/* Scroll animations */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* Print */
+@media print{.nav,.hero .scroll-hint{display:none}.hero{height:auto;min-height:auto;padding:2rem}}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <h1>Dominica</h1>
+    <p class="subtitle">The Nature Isle of the Caribbean — Whales, Waterfalls & Wild Beauty</p>
+    <span class="dates">🐋 April 21–25, 2026 &nbsp;·&nbsp; 4 Nights &nbsp;·&nbsp; Solo Adventure</span>
+  </div>
+  <div class="scroll-hint" style="color:#fff;font-size:1.5rem">↓</div>
+</section>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#overview" class="active">Overview</a>
+  <a href="#flights">Flights</a>
+  <a href="#itinerary">Itinerary</a>
+  <a href="#map">Map</a>
+  <a href="#hotels">Hotels</a>
+  <a href="#whales">Whales</a>
+  <a href="#practical">Practical Info</a>
+</nav>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <h2 class="section-title">Trip Overview</h2>
+  <p class="section-subtitle">Five days on the most untouched island in the Caribbean</p>
+  
+  <div class="stats">
+    <div class="stat"><div class="number">4</div><div class="label">Nights in Paradise</div></div>
+    <div class="stat"><div class="number">~300</div><div class="label">Resident Sperm Whales</div></div>
+    <div class="stat"><div class="number">365</div><div class="label">Rivers on the Island</div></div>
+    <div class="stat"><div class="number">9</div><div class="label">Active Volcanoes</div></div>
+  </div>
+
+  <div class="grid-2" style="margin-top:2rem">
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1568430462989-44163eb1752f?w=600" alt="Sperm whale underwater" loading="lazy">
+      <div class="card-body">
+        <h3>🐋 Swim with Sperm Whales</h3>
+        <p>Dominica is the only place on Earth with a year-round resident population of sperm whales. Under strict permit guidelines, you can slip into the water and observe these gentle giants between their 45-minute dives.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1432889490240-84df33d47091?w=600" alt="Tropical waterfall" loading="lazy">
+      <div class="card-body">
+        <h3>🌿 Waterfalls & Rainforest</h3>
+        <p>Hike through pristine rainforest to thundering waterfalls — Trafalgar Falls, Middleham Falls, Titou Gorge. Dominica has more hiking trails per square mile than anywhere in the Caribbean.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1682687220742-aba13b6e50ba?w=600" alt="Underwater bubbles coral" loading="lazy">
+      <div class="card-body">
+        <h3>🫧 Champagne Reef</h3>
+        <p>Snorkel over volcanic vents that release streams of warm bubbles through the sea floor. It literally looks like swimming in champagne. One of the Caribbean's most unique underwater sites.</p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1559128010-7c1ad6e1b6a5?w=600" alt="Caribbean sunset" loading="lazy">
+      <div class="card-body">
+        <h3>🌅 Eco-Luxury Retreat</h3>
+        <p>Stay at a world-class eco resort — treehouse villas perched on cliffs above the Caribbean Sea, private plunge pools, farm-to-table dining, and total immersion in nature.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLIGHTS -->
+<section id="flights" style="background:var(--white);max-width:100%;padding:4rem 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <h2 class="section-title">✈️ Flight Plan</h2>
+    <p class="section-subtitle">Mexico City → Miami → Dominica and back</p>
+
+    <h3 style="margin:2rem 0 1rem;color:var(--primary)">Outbound — Sunday/Monday, Apr 20–21</h3>
+    
+    <div class="flight-card">
+      <div class="route">
+        <div class="airport"><div class="code">MEX</div><div class="city">Mexico City</div></div>
+        <div class="arrow">✈️ →</div>
+        <div class="airport"><div class="code">MIA</div><div class="city">Miami</div></div>
+      </div>
+      <div class="flight-info">
+        <strong>American Airlines AA2428 or Aeromexico AM476</strong>
+        Sun Apr 20 · Evening departure (~7:30 PM – 11:55 PM)<br>
+        ~3.5 hrs · Nonstop · From ~$200 one-way<br>
+        <span class="tag tag-flight">Multiple evening options available</span>
+      </div>
+    </div>
+
+    <div class="flight-card">
+      <div class="route">
+        <div class="airport"><div class="code">MIA</div><div class="city">Miami</div></div>
+        <div class="arrow">✈️ →</div>
+        <div class="airport"><div class="code">DOM</div><div class="city">Dominica (Douglas-Charles)</div></div>
+      </div>
+      <div class="flight-info">
+        <strong>American Airlines AA3309</strong>
+        Mon Apr 21 · Morning (~8:30 AM – 12:45 PM)<br>
+        ~3.5 hrs · Nonstop · From ~$250 one-way<br>
+        <span class="tag tag-flight">AA has MIA→DOM nonstop service</span>
+      </div>
+    </div>
+
+    <p style="color:var(--text-light);font-size:.9rem;margin:1rem 0">💡 <strong>Tip:</strong> Book a hotel near MIA for the overnight. Courtyard Miami Airport or similar — quick shuttle in the morning.</p>
+
+    <h3 style="margin:2rem 0 1rem;color:var(--sunset)">Return — Friday, Apr 25</h3>
+
+    <div class="flight-card">
+      <div class="route">
+        <div class="airport"><div class="code">DOM</div><div class="city">Dominica</div></div>
+        <div class="arrow">✈️ →</div>
+        <div class="airport"><div class="code">MIA</div><div class="city">Miami</div></div>
+      </div>
+      <div class="flight-info">
+        <strong>American Airlines — Latest departure</strong>
+        Fri Apr 25 · Afternoon (~2:00 PM – 5:30 PM)<br>
+        ~3.5 hrs · Nonstop<br>
+        <span class="tag tag-flight">Gives you morning for one last activity</span>
+      </div>
+    </div>
+
+    <div style="background:var(--primary-light);border-radius:var(--radius);padding:1.5rem;margin-top:1.5rem">
+      <h4 style="color:var(--primary)">🛫 Booking Notes</h4>
+      <ul style="font-size:.9rem;color:var(--text-light);padding-left:1.2rem;margin-top:.5rem">
+        <li><strong>American Airlines</strong> operates the only nonstop MIA↔DOM service (started Dec 2021)</li>
+        <li>Douglas-Charles Airport (DOM) is on Dominica's northeast coast — ~75 min drive to Roseau/west coast resorts</li>
+        <li>Canefield Airport (DCF) is closer to Roseau but only handles small prop planes (LIAT, Winair)</li>
+        <li>Book early — limited frequency (a few flights per week). Check AA.com for Apr 2026 schedule when it opens</li>
+        <li>Alternative routing: MIA → Antigua/Barbados/Guadeloupe → DOM on LIAT or interCaribbean</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ITINERARY -->
+<section id="itinerary">
+  <h2 class="section-title">📅 Day-by-Day Itinerary</h2>
+  <p class="section-subtitle">A curated blend of adventure, wildlife, and relaxation</p>
+
+  <div class="timeline">
+
+    <!-- DAY 1 -->
+    <div class="day-block reveal">
+      <div class="day-header">
+        <span class="day-label">Day 1</span>
+        <span class="day-date">Monday, April 21</span>
+      </div>
+      <h3 class="day-title">Arrival & First Taste of Paradise</h3>
+      
+      <div class="activity accent">
+        <div class="time">12:45 PM</div>
+        <div class="details">
+          <h4>✈️ Arrive at Douglas-Charles Airport</h4>
+          <p>Land on Dominica's northeast coast. Your resort can arrange airport transfer (~75 min scenic drive through the mountains to the west coast). Wind through banana plantations, rainforest, and mountain villages.</p>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="time">2:30 PM</div>
+        <div class="details">
+          <h4>🏡 Check in to Resort</h4>
+          <p>Settle into your villa. Take in the view. Breathe. You're on an island with no chain hotels, no cruise ship ports on this side, and more parrots than people.</p>
+        </div>
+      </div>
+
+      <div class="activity ocean">
+        <div class="time">4:00 PM</div>
+        <div class="details">
+          <h4>🫧 Champagne Reef Snorkel</h4>
+          <p>Just south of Roseau near Soufrière, volcanic vents release thousands of warm bubbles through the seafloor. Swim through clouds of effervescence over healthy coral gardens. It's surreal, easy, and the perfect first-day activity.</p>
+          <span class="tag tag-dive">Snorkeling</span><span class="tag tag-dive">Volcanic</span><span class="tag tag-dive">Easy access</span>
+        </div>
+      </div>
+
+      <div class="activity sunset">
+        <div class="time">7:00 PM</div>
+        <div class="details">
+          <h4>🍽️ Dinner at Pearl's Cuisine, Roseau</h4>
+          <p>Authentic Dominican Creole cooking — try the fresh fish with provisions (root vegetables), callaloo soup, and plantains. Pearl's is a beloved local institution in the capital. Pair with a Kubuli beer (Dominica's local brew).</p>
+          <span class="tag tag-food">Local cuisine</span><span class="tag tag-food">Roseau</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-block reveal">
+      <div class="day-header">
+        <span class="day-label">Day 2</span>
+        <span class="day-date">Tuesday, April 22</span>
+      </div>
+      <h3 class="day-title">Whale Encounters 🐋</h3>
+
+      <div class="activity whale">
+        <div class="time">7:00 AM</div>
+        <div class="details">
+          <h4>🐋 Sperm Whale Swim Excursion (Full Morning)</h4>
+          <p>Depart from Roseau harbor with a licensed whale operator. The crew uses a hydrophone to locate whales by their clicks before they surface. When a pod is found, you'll slip into the water in groups of 3 max with a guide — floating at the surface as 45-foot sperm whales glide beneath you.</p>
+          <p style="margin-top:.5rem"><strong>What to expect:</strong> Female-led family pods with calves, possible nursing behavior, synchronized logging (sleeping at surface). The crew rotates swimmers so everyone gets multiple encounters. Typical trip: 4–6 hours, 3–8 in-water encounters.</p>
+          <span class="tag tag-whale">Sperm whales</span><span class="tag tag-whale">In-water encounter</span><span class="tag tag-whale">Permit required</span>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="time">1:00 PM</div>
+        <div class="details">
+          <h4>🍲 Lunch at Resort</h4>
+          <p>Decompress from the morning. You just floated with the largest toothed predators on Earth. Let that sink in over fresh mahi-mahi.</p>
+        </div>
+      </div>
+
+      <div class="activity forest">
+        <div class="time">3:00 PM</div>
+        <div class="details">
+          <h4>🌿 Easy Hike: Emerald Pool</h4>
+          <p>A gentle 20-minute walk through rainforest to a grotto with a picture-perfect waterfall splashing into a crystal-clear pool. You can swim in it. A beautiful, chill afternoon activity after an intense morning.</p>
+          <span class="tag tag-hike">Easy · 1 hr round trip</span>
+        </div>
+      </div>
+
+      <div class="activity sunset">
+        <div class="time">7:30 PM</div>
+        <div class="details">
+          <h4>🍽️ Dinner at Bwa Denn (Secret Bay) or Cocorico Cafe</h4>
+          <p>If staying at Secret Bay, Bwa Denn is their signature restaurant — farm-to-table Caribbean fusion with stunning sunset views. Otherwise, Cocorico Cafe in Roseau for excellent French-Caribbean creole.</p>
+          <span class="tag tag-food">Fine dining</span><span class="tag tag-food">Caribbean fusion</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-block reveal">
+      <div class="day-header">
+        <span class="day-label">Day 3</span>
+        <span class="day-date">Wednesday, April 23</span>
+      </div>
+      <h3 class="day-title">Waterfalls & Gorges 🌊</h3>
+
+      <div class="activity forest">
+        <div class="time">8:00 AM</div>
+        <div class="details">
+          <h4>💧 Middleham Falls Hike</h4>
+          <p>A moderate 1.5-hour hike through pristine montane rainforest to one of the Caribbean's tallest waterfalls — a 200-foot cascade plunging into a deep pool. The trail passes through groves of giant ferns and you'll hear parrots overhead. Bring your swimsuit.</p>
+          <span class="tag tag-hike">Moderate · 3 hrs round trip</span><span class="tag tag-hike">Swimming</span>
+        </div>
+      </div>
+
+      <div class="activity forest">
+        <div class="time">11:30 AM</div>
+        <div class="details">
+          <h4>💧 Trafalgar Falls</h4>
+          <p>Dominica's most iconic waterfall — actually twin falls (Father and Mother) plunging side-by-side into hot and cold pools. The short hike takes 15 minutes. Climb the boulders to reach the hot springs at the base for a natural jacuzzi experience.</p>
+          <span class="tag tag-hike">Easy · 30 min round trip</span><span class="tag tag-hike">Hot springs</span>
+        </div>
+      </div>
+
+      <div class="activity ocean">
+        <div class="time">2:00 PM</div>
+        <div class="details">
+          <h4>🏊 Titou Gorge</h4>
+          <p>Swim through a narrow volcanic gorge with sheer canyon walls rising above you, the water a surreal blue-green. At the end: a hidden waterfall in a cave. This was a filming location for Pirates of the Caribbean and it looks exactly that dramatic. One of Dominica's must-do experiences.</p>
+          <span class="tag tag-dive">Swimming</span><span class="tag tag-hike">Volcanic gorge</span><span class="tag tag-hike">Iconic</span>
+        </div>
+      </div>
+
+      <div class="activity sunset">
+        <div class="time">7:00 PM</div>
+        <div class="details">
+          <h4>🍽️ Dinner at The Ruins Rock Cafe, Roseau</h4>
+          <p>Set in actual stone ruins overlooking the waterfront. Great cocktails, fresh seafood, relaxed vibe. Try the grilled lobster or the coconut curry shrimp.</p>
+          <span class="tag tag-food">Waterfront</span><span class="tag tag-food">Seafood</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-block reveal">
+      <div class="day-header">
+        <span class="day-label">Day 4</span>
+        <span class="day-date">Thursday, April 24</span>
+      </div>
+      <h3 class="day-title">Deep Blue & Farewell Feast</h3>
+
+      <div class="activity whale">
+        <div class="time">7:00 AM</div>
+        <div class="details">
+          <h4>🐋 Second Whale Encounter or 🤿 Scuba Diving</h4>
+          <p><strong>Option A:</strong> Return to the whales for a second morning. Each encounter is different — different pods, different behaviors. You might see a solitary bull male this time, or witness a heat run.<br>
+          <strong>Option B:</strong> Scuba dive at Soufrière Pinnacles or Scotts Head Drop-off. Dominica's underwater volcanic topography creates dramatic walls and pinnacles. Look for seahorses, frogfish, and the occasional whale shark.</p>
+          <span class="tag tag-whale">Whales</span><span class="tag tag-dive">Scuba</span><span class="tag tag-dive">Choose your adventure</span>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="time">1:30 PM</div>
+        <div class="details">
+          <h4>🧖 Afternoon: Relax & Spa</h4>
+          <p>Your last full afternoon. Use the resort spa, lounge by the plunge pool, or take a slow walk around the grounds. If at Secret Bay, the Gommier Spa offers treatments using local botanicals and volcanic clay.</p>
+        </div>
+      </div>
+
+      <div class="activity ocean">
+        <div class="time">4:00 PM</div>
+        <div class="details">
+          <h4>🏊 Scotts Head Snorkel (Optional)</h4>
+          <p>At Dominica's southern tip where the Caribbean Sea meets the Atlantic. Snorkel right off the beach over pristine coral. The water clarity here is incredible — 80+ foot visibility on calm days.</p>
+          <span class="tag tag-dive">Snorkeling</span><span class="tag tag-dive">Two oceans meet</span>
+        </div>
+      </div>
+
+      <div class="activity sunset">
+        <div class="time">7:30 PM</div>
+        <div class="details">
+          <h4>🍽️ Farewell Dinner at Zing Zing (Secret Bay) or Fort Young Hotel</h4>
+          <p>Go all out for the last night. Zing Zing is Secret Bay's beachside restaurant — toes in sand, tiki torches, fresh-caught lobster. Fort Young Hotel restaurant in Roseau has a candlelit terrace overlooking the harbor.</p>
+          <span class="tag tag-food">Farewell dinner</span><span class="tag tag-food">Special occasion</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-block reveal">
+      <div class="day-header">
+        <span class="day-label">Day 5</span>
+        <span class="day-date">Friday, April 25</span>
+      </div>
+      <h3 class="day-title">Last Morning & Departure</h3>
+
+      <div class="activity forest">
+        <div class="time">7:30 AM</div>
+        <div class="details">
+          <h4>🌅 Sunrise at Cabrits National Park (Optional)</h4>
+          <p>If staying on the northwest coast, a quick morning visit to the ruins of Fort Shirley in Cabrits National Park. Panoramic views, historic fortifications, and great bird watching. Or simply enjoy a slow breakfast at the resort.</p>
+          <span class="tag tag-hike">Easy · 1 hr</span>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="time">10:00 AM</div>
+        <div class="details">
+          <h4>🧳 Check out & Transfer to Airport</h4>
+          <p>Allow 75–90 minutes for the scenic drive back to Douglas-Charles Airport. Your driver will take the cross-island road through the mountains — one last gorgeous ride through the Nature Isle.</p>
+        </div>
+      </div>
+
+      <div class="activity accent">
+        <div class="time">~2:00 PM</div>
+        <div class="details">
+          <h4>✈️ Depart Dominica → Miami</h4>
+          <p>Fly home with a camera full of whale photos and a soul full of rainforest. You'll be back.</p>
+          <span class="tag tag-flight">DOM → MIA</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- MAP -->
+<section id="map" style="max-width:100%;background:var(--white);padding:4rem 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <h2 class="section-title">🗺️ Activity Map</h2>
+    <p class="section-subtitle">All the key spots across the island</p>
+    <div id="mapContainer" style="height:500px;border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden"></div>
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section id="hotels">
+  <h2 class="section-title">🏨 Where to Stay</h2>
+  <p class="section-subtitle">Dominica's finest eco-luxury resorts</p>
+
+  <!-- Secret Bay -->
+  <div class="hotel-card reveal">
+    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600" alt="Luxury treehouse villa" loading="lazy">
+    <div class="hotel-info">
+      <div><span class="hotel-badge badge-top">⭐ TOP PICK</span><span class="hotel-badge badge-luxury">Relais & Châteaux</span></div>
+      <h3>Secret Bay</h3>
+      <p style="color:var(--text-light)">Portsmouth, Northwest Coast</p>
+      <div class="price">From ~$1,200–$1,650/night</div>
+      <p style="font-size:.9rem">The crown jewel of Dominica. Clifftop treehouse villas with floor-to-ceiling glass walls, private plunge pools, and 180° views of the Caribbean. Only 6 villas on the entire property — the most intimate luxury resort in the Caribbean. Two restaurants (Zing Zing beach bar + Bwa Denn), Gommier Spa, snorkeling right below.</p>
+      <div class="amenities">
+        <span class="amenity">🏡 Treehouse Villas</span>
+        <span class="amenity">🏊 Private Plunge Pool</span>
+        <span class="amenity">🍽️ 2 Restaurants</span>
+        <span class="amenity">💆 Gommier Spa</span>
+        <span class="amenity">🤿 Beach Snorkeling</span>
+        <span class="amenity">🌿 Rainforest Setting</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Jungle Bay -->
+  <div class="hotel-card reveal">
+    <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=600" alt="Eco resort pool" loading="lazy">
+    <div class="hotel-info">
+      <div><span class="hotel-badge badge-value">Best Value Luxury</span></div>
+      <h3>Jungle Bay</h3>
+      <p style="color:var(--text-light)">Point Mulatre, South Coast</p>
+      <div class="price">From ~$350–$550/night (all-inclusive available)</div>
+      <p style="font-size:.9rem">Adventure-focused eco resort with 85 treehouse-style bungalows perched on a hillside overlooking the Atlantic. All-inclusive packages include guided hikes, yoga, diving, and meals. Great if you want activities built into your stay. Close to Soufrière and the best dive sites.</p>
+      <div class="amenities">
+        <span class="amenity">🏡 85 Bungalows</span>
+        <span class="amenity">🏊 Infinity Pool</span>
+        <span class="amenity">🧘 Daily Yoga</span>
+        <span class="amenity">🥾 Guided Hikes</span>
+        <span class="amenity">🤿 Dive Center</span>
+        <span class="amenity">🍽️ All-Inclusive Option</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rosalie Bay -->
+  <div class="hotel-card reveal">
+    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600" alt="Beach resort" loading="lazy">
+    <div class="hotel-info">
+      <div><span class="hotel-badge badge-value">Eco-Wellness</span></div>
+      <h3>Rosalie Bay Resort</h3>
+      <p style="color:var(--text-light)">Rosalie, East Coast</p>
+      <div class="price">From ~$250–$400/night</div>
+      <p style="font-size:.9rem">Boutique eco-wellness resort on a black sand beach. Known for sea turtle conservation (seasonal nesting!), river-stone spa, and organic garden. Quieter east coast location with dramatic Atlantic waves. Great base for Emerald Pool and Middleham Falls.</p>
+      <div class="amenities">
+        <span class="amenity">🐢 Turtle Conservation</span>
+        <span class="amenity">🧖 River Stone Spa</span>
+        <span class="amenity">🌊 Black Sand Beach</span>
+        <span class="amenity">🌱 Organic Garden</span>
+        <span class="amenity">🧘 Wellness Programs</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fort Young -->
+  <div class="hotel-card reveal">
+    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600" alt="Historic waterfront hotel" loading="lazy">
+    <div class="hotel-info">
+      <div><span class="hotel-badge" style="background:var(--text);color:#fff">In-Town Convenience</span></div>
+      <h3>Fort Young Hotel</h3>
+      <p style="color:var(--text-light)">Roseau Waterfront</p>
+      <div class="price">From ~$180–$300/night</div>
+      <p style="font-size:.9rem">The only waterfront hotel in Roseau, built within a historic 18th-century fort. Oceanfront pool, dive center on-site, walking distance to everything in town. Best option if you want easy access to Roseau's restaurants and nightlife. The balcony rooms overlook the Caribbean.</p>
+      <div class="amenities">
+        <span class="amenity">🏰 Historic Fort</span>
+        <span class="amenity">🏊 Ocean Pool</span>
+        <span class="amenity">🤿 Dive Center</span>
+        <span class="amenity">🍽️ Waterfront Dining</span>
+        <span class="amenity">📍 In Roseau</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagua Bay -->
+  <div class="hotel-card reveal">
+    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600" alt="Ocean cabana" loading="lazy">
+    <div class="hotel-info">
+      <div><span class="hotel-badge badge-top">#1 on TripAdvisor</span></div>
+      <h3>Pagua Bay House</h3>
+      <p style="color:var(--text-light)">Marigot, Northeast Coast</p>
+      <div class="price">From ~$200–$350/night</div>
+      <p style="font-size:.9rem">Intimate oceanfront cabanas (only 6!) rated #1 in Dominica on TripAdvisor. Modern design, incredible restaurant, close to the airport. Each cabana has floor-to-ceiling ocean views. The restaurant alone is worth the trip — creative Caribbean cuisine by a talented chef.</p>
+      <div class="amenities">
+        <span class="amenity">🏡 6 Private Cabanas</span>
+        <span class="amenity">🌊 Oceanfront</span>
+        <span class="amenity">🍽️ Top Restaurant</span>
+        <span class="amenity">✈️ Near Airport</span>
+        <span class="amenity">🌅 Sunrise Views</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHALES -->
+<section id="whales" style="background:linear-gradient(135deg,#1a5276,#0c6b58);color:#fff;max-width:100%;padding:4rem 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <h2 class="section-title" style="color:#fff">🐋 The Whale Experience</h2>
+    <p style="opacity:.8;font-size:1.05rem;margin-bottom:2.5rem">Everything you need to know about swimming with sperm whales in Dominica</p>
+
+    <div class="grid-2" style="gap:2rem">
+      <div>
+        <h3 style="color:var(--accent);margin-bottom:1rem;font-size:1.4rem">Why Dominica?</h3>
+        <p style="opacity:.9;font-size:.95rem;margin-bottom:1rem">Dominica hosts the <strong>only year-round resident population of sperm whales in the world</strong>. Approximately 200–300 sperm whales — primarily females and their offspring — live in the deep waters off the west coast. These aren't migratory visitors; they're family pods that have lived here for generations.</p>
+        <p style="opacity:.9;font-size:.95rem;margin-bottom:1rem">The island's west coast drops off steeply to depths of 1,000+ meters just a few miles offshore — perfect habitat for sperm whales, who forage on deep-sea squid at 300–1,000m depth.</p>
+        <p style="opacity:.9;font-size:.95rem">Under Dominica's strict permit system, only 3 swimmers enter the water at a time with a licensed guide. Operators use hydrophones to locate pods by their clicks. Encounters happen when whales surface between their ~45-minute dives.</p>
+      </div>
+      <div>
+        <h3 style="color:var(--accent);margin-bottom:1rem;font-size:1.4rem">Recommended Operators</h3>
+        <div style="background:rgba(255,255,255,.1);border-radius:12px;padding:1.25rem;margin-bottom:1rem">
+          <h4 style="color:#fff">🥇 Dive Dominica / Sperm Whale Swims</h4>
+          <p style="opacity:.8;font-size:.9rem">The most experienced operator, run by Andrew Armour. In-water encounters Nov–June. Full-day trips, hydrophone tracking, professional guides. ~$250–350/person per trip.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.1);border-radius:12px;padding:1.25rem;margin-bottom:1rem">
+          <h4 style="color:#fff">🐋 Anchorage Dive Center</h4>
+          <p style="opacity:.8;font-size:.9rem">Based at Anchorage Hotel in Roseau. Whale watching + in-water encounters. Also offers scuba diving at Champagne Reef and Soufrière. Reliable and well-reviewed.</p>
+        </div>
+        <div style="background:rgba(255,255,255,.1);border-radius:12px;padding:1.25rem">
+          <h4 style="color:#fff">🌊 One With Whales (Premium)</h4>
+          <p style="opacity:.8;font-size:.9rem">Boutique multi-day whale expedition company. Small groups (max 6), dedicated hydrophone operator, photo/video coaching. Premium experience at premium price (~$3,500+ for multi-day package).</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,.08);border-radius:var(--radius);padding:2rem;margin-top:2.5rem">
+      <h3 style="color:var(--accent);margin-bottom:1rem">🎯 What You'll Experience</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem">
+        <div>
+          <h4 style="color:#fff;font-size:1rem;margin-bottom:.5rem">👀 Visual Encounters</h4>
+          <p style="opacity:.8;font-size:.85rem">Float at the surface as 40–60 foot whales glide below. Watch mothers with calves, synchronized sleeping pods, and social bonding behaviors.</p>
+        </div>
+        <div>
+          <h4 style="color:#fff;font-size:1rem;margin-bottom:.5rem">🔊 Acoustic Experience</h4>
+          <p style="opacity:.8;font-size:.85rem">You'll hear the whales' clicks underwater — echolocation, codas (social communication), and the incredibly loud "buzz" of approaching whales.</p>
+        </div>
+        <div>
+          <h4 style="color:#fff;font-size:1rem;margin-bottom:.5rem">📸 Photography</h4>
+          <p style="opacity:.8;font-size:.85rem">Bring an underwater camera (GoPro works great). The clear Caribbean waters and close encounters make for life-changing footage.</p>
+        </div>
+        <div>
+          <h4 style="color:#fff;font-size:1rem;margin-bottom:.5rem">⏱️ Timing</h4>
+          <p style="opacity:.8;font-size:.85rem">Full morning trip (7AM–1PM). Expect 3–8 in-water encounters. April is excellent — calmer seas than summer, whales very active with calves.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRACTICAL INFO -->
+<section id="practical">
+  <h2 class="section-title">📋 Practical Info</h2>
+  <p class="section-subtitle">Everything else you need to know</p>
+
+  <div class="info-grid">
+    <div class="info-item">
+      <h4>💰 Currency & Money</h4>
+      <ul>
+        <li><strong>EC$ (Eastern Caribbean Dollar)</strong> — 1 USD ≈ 2.70 EC$</li>
+        <li>US dollars widely accepted</li>
+        <li>ATMs in Roseau and Portsmouth</li>
+        <li>Credit cards accepted at resorts & restaurants</li>
+        <li>Carry cash for taxis, small shops, tips</li>
+      </ul>
+    </div>
+    <div class="info-item">
+      <h4>🚗 Getting Around</h4>
+      <ul>
+        <li><strong>Taxis:</strong> Arranged through resort. Airport transfer ~$60–80 USD</li>
+        <li><strong>Rental car:</strong> Available but roads are mountainous & narrow. Driving is on the LEFT</li>
+        <li>Most resorts arrange all transport for excursions</li>
+        <li>Roseau to Portsmouth: ~1.5 hrs drive</li>
+      </ul>
+    </div>
+    <div class="info-item">
+      <h4>🎒 Packing List</h4>
+      <ul>
+        <li>Reef-safe sunscreen (mandatory!)</li>
+        <li>Waterproof camera / GoPro</li>
+        <li>Hiking shoes with grip (trails are muddy)</li>
+        <li>Rashguard for whale encounters</li>
+        <li>Quick-dry clothes</li>
+        <li>Rain jacket (it's a rainforest!)</li>
+        <li>Snorkel mask (or use operator's)</li>
+        <li>Insect repellent</li>
+        <li>Waterproof phone case</li>
+      </ul>
+    </div>
+    <div class="info-item">
+      <h4>🌤️ Weather in April</h4>
+      <ul>
+        <li>Avg high: 86°F (30°C)</li>
+        <li>Avg low: 73°F (23°C)</li>
+        <li>Dry season — less rain than summer</li>
+        <li>Sea conditions: generally calm on west coast</li>
+        <li>Water temp: 80°F (27°C) 🤤</li>
+        <li>Sunrise ~5:50 AM / Sunset ~6:20 PM</li>
+      </ul>
+    </div>
+    <div class="info-item">
+      <h4>🍽️ Top Restaurants</h4>
+      <ul>
+        <li><strong>Pearl's Cuisine</strong> — Authentic Creole (Roseau)</li>
+        <li><strong>Cocorico Cafe</strong> — French-Caribbean (Roseau)</li>
+        <li><strong>The Ruins Rock Cafe</strong> — Seafood in stone ruins (Roseau)</li>
+        <li><strong>Pagua Bay House</strong> — Creative Caribbean</li>
+        <li><strong>Bwa Denn</strong> — Secret Bay's farm-to-table</li>
+        <li><strong>Zing Zing</strong> — Secret Bay beach bar</li>
+        <li><strong>Fort Young Hotel</strong> — Waterfront dining</li>
+      </ul>
+    </div>
+    <div class="info-item">
+      <h4>📱 Practical Tips</h4>
+      <ul>
+        <li><strong>Entry:</strong> US passport — no visa needed</li>
+        <li><strong>Language:</strong> English (official) + Creole</li>
+        <li><strong>WiFi:</strong> Available at resorts, spotty elsewhere</li>
+        <li><strong>Power:</strong> 230V, UK-style plugs (Type D/G) — bring adapter</li>
+        <li><strong>Tipping:</strong> 10–15% at restaurants</li>
+        <li><strong>Safety:</strong> Very safe island. Low crime.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="background:var(--primary-light);border-radius:var(--radius);padding:2rem;margin-top:2rem">
+    <h4 style="color:var(--primary);margin-bottom:.75rem">🐋 Whale Encounter Booking — Book ASAP!</h4>
+    <p style="font-size:.9rem;color:var(--text)">Whale swim permits are limited and operators book out months in advance, especially for April (peak season with calm seas). Contact these operators now:</p>
+    <ul style="font-size:.9rem;padding-left:1.2rem;margin-top:.5rem;color:var(--text)">
+      <li><strong>Sperm Whale Swims:</strong> <a href="https://spermwhaleswims.com" target="_blank">spermwhaleswims.com</a></li>
+      <li><strong>Dive Dominica:</strong> <a href="https://divedominica.com" target="_blank">divedominica.com</a></li>
+      <li><strong>One With Whales:</strong> <a href="https://onewithwhales.com" target="_blank">onewithwhales.com</a></li>
+    </ul>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer style="text-align:center;padding:3rem;color:var(--text-light);font-size:.85rem;background:var(--white)">
+  <p>Built with 🐋 for Quintin's Dominica Adventure</p>
+  <p style="margin-top:.5rem;font-size:.75rem">April 2026 · The Nature Isle awaits</p>
+</footer>
+
+<script>
+// Leaflet Map
+const map = L.map('mapContainer').setView([15.42, -61.37], 11);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+  attribution:'© OpenStreetMap',maxZoom:18
+}).addTo(map);
+
+const spots = [
+  {lat:15.4150,lng:-61.4710,name:"Secret Bay Resort",desc:"Top pick eco-luxury resort",icon:"🏡"},
+  {lat:15.3017,lng:-61.3878,name:"Roseau (Capital)",desc:"Restaurants, Fort Young Hotel, departure point for whales",icon:"🏙️"},
+  {lat:15.2281,lng:-61.3583,name:"Champagne Reef",desc:"Volcanic bubble snorkeling",icon:"🫧"},
+  {lat:15.2089,lng:-61.3628,name:"Scotts Head",desc:"Where Caribbean meets Atlantic — great snorkeling",icon:"🤿"},
+  {lat:15.2350,lng:-61.3700,name:"Soufrière / Dive Sites",desc:"Pinnacles, wall dives",icon:"🐠"},
+  {lat:15.3220,lng:-61.3450,name:"Trafalgar Falls",desc:"Twin waterfalls with hot springs",icon:"💧"},
+  {lat:15.3600,lng:-61.3300,name:"Middleham Falls",desc:"200ft waterfall — moderate hike",icon:"💧"},
+  {lat:15.3800,lng:-61.3400,name:"Emerald Pool",desc:"Easy rainforest walk to grotto pool",icon:"🌿"},
+  {lat:15.3280,lng:-61.3380,name:"Titou Gorge",desc:"Swim through volcanic gorge to hidden waterfall",icon:"🏊"},
+  {lat:15.5740,lng:-61.3000,name:"Douglas-Charles Airport",desc:"Main airport (DOM)",icon:"✈️"},
+  {lat:15.5210,lng:-61.4620,name:"Cabrits National Park",desc:"Fort Shirley ruins, hiking, bird watching",icon:"🏰"},
+  {lat:15.2800,lng:-61.4200,name:"Whale Watching Area",desc:"Sperm whale encounters off west coast",icon:"🐋"},
+  {lat:15.3500,lng:-61.2600,name:"Pagua Bay House",desc:"#1 TripAdvisor — oceanfront cabanas",icon:"🏨"},
+  {lat:15.3700,lng:-61.2400,name:"Rosalie Bay Resort",desc:"Eco-wellness, black sand beach",icon:"🐢"},
+  {lat:15.2400,lng:-61.3500,name:"Jungle Bay",desc:"Adventure eco resort, all-inclusive",icon:"🌴"},
+];
+
+spots.forEach(s=>{
+  const icon = L.divIcon({html:`<div style="font-size:1.5rem;text-align:center;filter:drop-shadow(0 2px 4px rgba(0,0,0,.3))">${s.icon}</div>`,iconSize:[30,30],iconAnchor:[15,15],className:''});
+  L.marker([s.lat,s.lng],{icon}).addTo(map).bindPopup(`<strong>${s.name}</strong><br><span style="font-size:.85rem;color:#666">${s.desc}</span>`);
+});
+
+// Nav active state
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav a');
+window.addEventListener('scroll',()=>{
+  let current='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-200)current=s.id});
+  navLinks.forEach(l=>{l.classList.toggle('active',l.getAttribute('href')==='#'+current)});
+});
+
+// Scroll reveal
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
