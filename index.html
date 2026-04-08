@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dominica Trip | Apr 21–25, 2026</title>
+<title>Dominica Trip | Apr 21–24, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -134,7 +134,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 .budget-line .item-note{font-size:.75rem;color:var(--text-light)}
 
 /* Activity directory - accordion dropdowns */
-.activity-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1rem;margin-bottom:2rem}
+.activity-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
 .activity-category{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
 .category-header{padding:1.25rem 1.5rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:background .2s;user-select:none}
 .category-header:hover{background:#f8f9fa}
@@ -174,7 +174,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
   #mapContainer{height:350px !important}
   .budget-total .total-amount{font-size:2.5rem}
   .budget-categories{grid-template-columns:1fr}
-  .activity-grid{grid-template-columns:1fr}
+
 }
 @media(max-width:480px){
   .nav a{font-size:.75rem;padding:.35rem .6rem}
@@ -198,7 +198,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
   <div class="hero-content">
     <h1>Dominica</h1>
     <p class="subtitle">The Nature Isle of the Caribbean</p>
-    <span class="dates">April 21 &ndash; 25, 2026 &middot; 4 Nights &middot; Trip for 2</span>
+    <span class="dates">April 21 &ndash; 24, 2026 &middot; 3 Nights &middot; Trip for 2</span>
   </div>
 </section>
 
@@ -252,19 +252,35 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 
     <p style="color:var(--text-light);font-size:.9rem;margin:1rem 0"><strong>Tip:</strong> Book a hotel near MIA for the overnight Sunday night.</p>
 
-    <h3 style="margin:2rem 0 1rem;color:var(--sunset)">Return &mdash; Friday, Apr 25</h3>
+    <h3 style="margin:2rem 0 1rem;color:var(--sunset)">Return &mdash; Friday, Apr 24</h3>
 
     <div class="flight-card">
       <div class="route">
         <div class="airport"><div class="code">DOM</div><div class="city">Dominica</div></div>
         <div class="arrow">&#9992;&#65039; &rarr;</div>
-        <div class="airport"><div class="code">MIA</div><div class="city">Miami</div></div>
+        <div class="airport"><div class="code">SJU</div><div class="city">San Juan</div></div>
       </div>
       <div class="flight-info">
-        <strong>American Airlines &mdash; Latest departure</strong>
-        Fri Apr 25 &middot; Afternoon (~2:00 PM &ndash; 5:30 PM)<br>
-        ~3.5 hrs &middot; Nonstop<br>
-        <span class="tag tag-status tag-pending">Needs booking</span>
+        <strong>Contour Airlines LF 3203 (Public Charter)</strong>
+        Fri Apr 24 &middot; 9:00 AM &rarr; 10:25 AM<br>
+        1h 25m &middot; Embraer ERJ145<br>
+        <span class="tag tag-flight">DOM &rarr; SJU</span>
+      </div>
+    </div>
+
+    <p style="color:var(--text-light);font-size:.9rem;margin:.5rem 0 1rem"><strong>3h layover in San Juan</strong> (10:25 AM &rarr; 1:25 PM)</p>
+
+    <div class="flight-card">
+      <div class="route">
+        <div class="airport"><div class="code">SJU</div><div class="city">San Juan</div></div>
+        <div class="arrow">&#9992;&#65039; &rarr;</div>
+        <div class="airport"><div class="code">EWR</div><div class="city">Newark</div></div>
+      </div>
+      <div class="flight-info">
+        <strong>United Airlines UA 1173</strong>
+        Fri Apr 24 &middot; 1:25 PM &rarr; 5:39 PM<br>
+        4h 14m<br>
+        <span class="tag tag-flight">SJU &rarr; EWR</span>
       </div>
     </div>
 
@@ -1003,13 +1019,13 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <span class="day-date">Wednesday, April 23</span>
         <span class="tag tag-status tag-tbd">Planning</span>
       </div>
-      <h3 class="day-title">Waterfalls, Gorges &amp; Exploration</h3>
+      <h3 class="day-title">Last Full Day</h3>
 
       <div class="options-group">
         <div class="options-label">Morning &mdash; pick one</div>
         <div class="option-card">
           <div class="option-header">
-            <div><div class="time-slot">7:00 AM</div><h4>Boiling Lake Hike</h4><p>The big one. 6&ndash;7 hrs through the Valley of Desolation to the world's second-largest boiling lake. Full day commitment.</p><span class="tag tag-hike">Strenuous &middot; 6&ndash;7 hrs</span></div>
+            <div><div class="time-slot">7:00 AM</div><h4>Boiling Lake Hike</h4><p>The big one. 6&ndash;7 hrs through the Valley of Desolation to the world's second-largest boiling lake. Full day commitment &mdash; skip afternoon activities if you do this.</p><span class="tag tag-hike">Strenuous &middot; 6&ndash;7 hrs</span></div>
             <div class="price-tag">~$50&ndash;80/pp (guide)</div>
           </div>
         </div>
@@ -1025,68 +1041,10 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
             <div class="price-tag">$5 entry</div>
           </div>
         </div>
-      </div>
-
-      <div class="options-group">
-        <div class="options-label">Afternoon &mdash; pick one</div>
-        <div class="option-card">
-          <div class="option-header">
-            <div><div class="time-slot">2:00 PM</div><h4>Scotts Head Snorkel</h4><p>Where the Caribbean meets the Atlantic. Pristine coral, 80+ ft visibility.</p><span class="tag tag-dive">Snorkeling</span></div>
-            <div class="price-tag">Free (gear ~$15)</div>
-          </div>
-        </div>
-        <div class="option-card">
-          <div class="option-header">
-            <div><div class="time-slot">2:00 PM</div><h4>Scuba Diving &mdash; Soufriere</h4><p>Pinnacles, wall dives, volcanic underwater topography.</p><span class="tag tag-dive">Scuba</span></div>
-            <div class="price-tag">~$60&ndash;105/pp</div>
-          </div>
-        </div>
-        <div class="option-card">
-          <div class="option-header">
-            <div><div class="time-slot">2:00 PM</div><h4>Beach: Mero or Champagne Beach</h4><p>Chill afternoon at the beach. Mero for lively vibes, Champagne for volcanic warmth.</p></div>
-            <div class="price-tag">Free</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="options-group">
-        <div class="options-label">Dinner</div>
-        <div class="option-card">
-          <div class="option-header">
-            <div><h4>Pagua Bay House Restaurant</h4><p>Creative Caribbean cuisine, oceanfront.</p></div>
-            <div class="price-tag">~$35&ndash;60/pp</div>
-          </div>
-        </div>
-        <div class="option-card">
-          <div class="option-header">
-            <div><h4>Pearl's Cuisine or Ruins Rock Cafe</h4><p>Whichever you haven't hit yet.</p></div>
-            <div class="price-tag">~$20&ndash;50/pp</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- DAY 4 -->
-    <div class="day-block reveal">
-      <div class="day-header">
-        <span class="day-label">Day 4</span>
-        <span class="day-date">Thursday, April 24</span>
-        <span class="tag tag-status tag-tbd">Planning</span>
-      </div>
-      <h3 class="day-title">Last Full Day</h3>
-
-      <div class="options-group">
-        <div class="options-label">Morning &mdash; pick one</div>
         <div class="option-card">
           <div class="option-header">
             <div><div class="time-slot">8:00 AM</div><h4>Second Whale Watching Tour</h4><p>Different day = potentially different pods. Or go private charter ($688 for up to 6).</p><span class="tag tag-whale">Sperm whales</span></div>
             <div class="price-tag">$69/pp or $344/pp private</div>
-          </div>
-        </div>
-        <div class="option-card">
-          <div class="option-header">
-            <div><div class="time-slot">8:00 AM</div><h4>Scuba Diving &mdash; Scotts Head Drop-Off</h4><p>Sheer wall dive where two oceans meet. 80+ ft visibility.</p><span class="tag tag-dive">Scuba</span></div>
-            <div class="price-tag">~$60&ndash;105/pp</div>
           </div>
         </div>
         <div class="option-card">
@@ -1104,7 +1062,19 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
       </div>
 
       <div class="options-group">
-        <div class="options-label">Afternoon</div>
+        <div class="options-label">Afternoon &mdash; pick one</div>
+        <div class="option-card">
+          <div class="option-header">
+            <div><div class="time-slot">2:00 PM</div><h4>Scotts Head Snorkel</h4><p>Where the Caribbean meets the Atlantic. Pristine coral, 80+ ft visibility.</p><span class="tag tag-dive">Snorkeling</span></div>
+            <div class="price-tag">Free (gear ~$15)</div>
+          </div>
+        </div>
+        <div class="option-card">
+          <div class="option-header">
+            <div><div class="time-slot">2:00 PM</div><h4>Scuba Diving &mdash; Soufriere or Scotts Head</h4><p>Pinnacles, wall dives, volcanic underwater topography. Scotts Head drop-off is a sheer wall where two oceans meet.</p><span class="tag tag-dive">Scuba</span></div>
+            <div class="price-tag">~$60&ndash;105/pp</div>
+          </div>
+        </div>
         <div class="option-card">
           <div class="option-header">
             <div><div class="time-slot">1:30 PM</div><h4>Resort Spa &amp; Relaxation</h4><p>Last full afternoon. Spa treatments, plunge pool, sunset watching.</p></div>
@@ -1121,6 +1091,12 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
           <div class="option-header">
             <div><div class="time-slot">2:00 PM</div><h4>Kalinago Territory Visit</h4><p>Indigenous cultural experience. Basket weaving, cassava bread, history.</p></div>
             <div class="price-tag">~$10 entry</div>
+          </div>
+        </div>
+        <div class="option-card">
+          <div class="option-header">
+            <div><div class="time-slot">2:00 PM</div><h4>Beach: Mero or Champagne Beach</h4><p>Chill afternoon at the beach. Mero for lively vibes, Champagne for volcanic warmth.</p></div>
+            <div class="price-tag">Free</div>
           </div>
         </div>
       </div>
@@ -1145,48 +1121,55 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
             <div class="price-tag">~$55&ndash;90/pp</div>
           </div>
         </div>
+        <div class="option-card">
+          <div class="option-header">
+            <div><h4>Pagua Bay House Restaurant</h4><p>Creative Caribbean cuisine, oceanfront.</p></div>
+            <div class="price-tag">~$35&ndash;60/pp</div>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- DAY 5 -->
+    <!-- DAY 4 -->
     <div class="day-block reveal">
       <div class="day-header">
-        <span class="day-label">Day 5</span>
-        <span class="day-date">Friday, April 25</span>
+        <span class="day-label">Day 4</span>
+        <span class="day-date">Friday, April 24</span>
         <span class="tag tag-status tag-tbd">Planning</span>
       </div>
       <h3 class="day-title">Departure</h3>
 
-      <div class="options-group">
-        <div class="options-label">Morning &mdash; pick one</div>
-        <div class="option-card">
-          <div class="option-header">
-            <div><div class="time-slot">7:00 AM</div><h4>Cabrits National Park / Fort Shirley</h4><p>Quick morning visit. Panoramic views, historic fort, bird watching.</p><span class="tag tag-hike">Easy &middot; 1 hr</span></div>
-            <div class="price-tag">$5 entry</div>
-          </div>
-        </div>
-        <div class="option-card">
-          <div class="option-header">
-            <div><div class="time-slot">7:30 AM</div><h4>Slow Breakfast &amp; Last Swim</h4><p>Leisurely resort morning. One last dip.</p></div>
-            <div class="price-tag">Free</div>
-          </div>
-        </div>
-      </div>
-
       <div class="activity">
-        <div class="time">10:00 AM</div>
+        <div class="time">~6:30 AM</div>
         <div class="details">
           <h4>Check out &amp; Transfer to Airport</h4>
-          <p>75&ndash;90 min scenic drive to Douglas-Charles Airport.</p>
+          <p>Early start &mdash; flight departs at 9:00 AM. Allow 75&ndash;90 min for the drive to Douglas-Charles Airport. Need to be there by ~7:30 AM.</p>
         </div>
       </div>
 
       <div class="activity accent">
-        <div class="time">~2:00 PM</div>
+        <div class="time">9:00 AM</div>
         <div class="details">
-          <h4>Depart Dominica &rarr; Miami</h4>
-          <p>Fly home with whale photos and rainforest memories.</p>
-          <span class="tag tag-flight">DOM &rarr; MIA</span>
+          <h4>DOM &rarr; SJU (Contour Airlines LF 3203)</h4>
+          <p>1h 25m to San Juan. Embraer ERJ145. Public charter operated by Contour Airlines.</p>
+          <span class="tag tag-flight">DOM &rarr; SJU</span>
+        </div>
+      </div>
+
+      <div class="activity">
+        <div class="time">10:25 AM</div>
+        <div class="details">
+          <h4>3h Layover in San Juan</h4>
+          <p>Arrive SJU 10:25 AM. Next flight departs 1:25 PM. Time for lunch at the airport.</p>
+        </div>
+      </div>
+
+      <div class="activity accent">
+        <div class="time">1:25 PM</div>
+        <div class="details">
+          <h4>SJU &rarr; EWR (United UA 1173)</h4>
+          <p>4h 14m to Newark. Arrive 5:39 PM.</p>
+          <span class="tag tag-flight">SJU &rarr; EWR</span>
         </div>
       </div>
     </div>
@@ -1296,14 +1279,14 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <div class="budget-card-header">Flights<span class="cat-total">$768</span></div>
         <div class="budget-line"><div><div class="item-name">MIA &rarr; DOM (AA4304) x2</div><div class="item-note">$384/person &middot; Mon Apr 21</div></div><div class="item-cost">$768</div></div>
         <div class="budget-line"><div><div class="item-name">MEX &rarr; MIA x2</div><div class="item-note">Sun Apr 20 &middot; Evening</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">DOM &rarr; MIA x2 (return)</div><div class="item-note">Fri Apr 25</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">MIA &rarr; MEX x2 (return)</div><div class="item-note">Fri Apr 25</div></div><div class="item-cost pending">TBD</div></div>
+        <div class="budget-line"><div><div class="item-name">DOM &rarr; SJU (LF 3203) x2</div><div class="item-note">Fri Apr 24 &middot; 9:00 AM</div></div><div class="item-cost pending">TBD</div></div>
+        <div class="budget-line"><div><div class="item-name">SJU &rarr; EWR (UA 1173) x2</div><div class="item-note">Fri Apr 24 &middot; 1:25 PM</div></div><div class="item-cost pending">TBD</div></div>
       </div>
 
       <div class="budget-card">
         <div class="budget-card-header">Accommodation<span class="cat-total pending" style="color:var(--pending)">TBD</span></div>
         <div class="budget-line"><div><div class="item-name">MIA overnight hotel (1 night)</div><div class="item-note">Sun Apr 20</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">Dominica hotel (4 nights)</div><div class="item-note">Mon Apr 21 &ndash; Fri Apr 25</div></div><div class="item-cost pending">TBD</div></div>
+        <div class="budget-line"><div><div class="item-name">Dominica hotel (3 nights)</div><div class="item-note">Mon Apr 21 &ndash; Fri Apr 24</div></div><div class="item-cost pending">TBD</div></div>
       </div>
 
       <div class="budget-card">
@@ -1317,7 +1300,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
       <div class="budget-card">
         <div class="budget-card-header">Transport &amp; Food<span class="cat-total pending" style="color:var(--pending)">TBD</span></div>
         <div class="budget-line"><div><div class="item-name">Airport transfers (each way)</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">Dinners (4 nights)</div></div><div class="item-cost pending">TBD</div></div>
+        <div class="budget-line"><div><div class="item-name">Dinners (3 nights)</div></div><div class="item-cost pending">TBD</div></div>
         <div class="budget-line"><div><div class="item-name">Taxis / local transport</div></div><div class="item-cost pending">TBD</div></div>
       </div>
     </div>
@@ -1491,7 +1474,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 
 <!-- Footer -->
 <footer style="text-align:center;padding:3rem;color:var(--text-light);font-size:.85rem;background:var(--white)">
-  <p>Dominica Trip Planning &mdash; April 2026 &middot; Trip for 2</p>
+  <p>Dominica Trip Planning &mdash; April 21&ndash;24, 2026 &middot; Trip for 2</p>
 </footer>
 
 <script>
