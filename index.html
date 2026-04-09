@@ -132,6 +132,31 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 .budget-line .item-cost{font-family:'JetBrains Mono',monospace;color:var(--text);font-weight:500}
 .budget-line .item-cost.pending{color:var(--pending);font-style:italic}
 .budget-line .item-note{font-size:.75rem;color:var(--text-light)}
+.costs-shell{position:relative}
+.costs-shell.locked .costs-content{filter:blur(20px);user-select:none;pointer-events:none}
+.costs-lock{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:1.5rem;background:linear-gradient(180deg,rgba(250,251,252,.2),rgba(250,251,252,.82))}
+.costs-shell.unlocked .costs-lock{display:none}
+.costs-gate{width:min(100%,420px);background:rgba(255,255,255,.96);border-radius:var(--radius);padding:1.5rem;box-shadow:0 10px 30px rgba(0,0,0,.12);text-align:center}
+.costs-gate h3{font-size:1.45rem;margin-bottom:.4rem;color:var(--dark)}
+.costs-gate p{font-size:.95rem;color:var(--text-light)}
+.costs-form{display:flex;gap:.75rem;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:1rem}
+.costs-form input{flex:1;min-width:210px;padding:.85rem 1rem;border:1px solid #dfe6e9;border-radius:12px;font:inherit}
+.costs-form button{border:none;border-radius:12px;background:var(--primary);color:#fff;padding:.85rem 1.25rem;font:inherit;font-weight:600;cursor:pointer}
+.costs-form button:hover{background:#095646}
+.costs-error{min-height:1.2rem;margin-top:.75rem;font-size:.85rem;color:var(--sunset)}
+
+/* Map planner */
+.map-base-note{margin:0 0 1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:1rem 1.1rem;color:#fff;backdrop-filter:blur(10px)}
+.map-base-note strong{color:#fff}
+.map-base-note span{display:block;color:rgba(255,255,255,.7);font-size:.88rem;margin-top:.2rem}
+.map-planner-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.25rem}
+.planner-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);overflow:hidden;backdrop-filter:blur(10px)}
+.planner-card-header{padding:1rem 1.2rem;border-bottom:1px solid rgba(255,255,255,.12);font-weight:600;color:#fff;font-size:1rem}
+.planner-line{padding:.85rem 1.2rem;border-bottom:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
+.planner-line:last-child{border-bottom:none}
+.planner-name{color:#fff;font-size:.92rem;font-weight:600;line-height:1.3}
+.planner-note{color:rgba(255,255,255,.65);font-size:.78rem;line-height:1.45;margin-top:.2rem}
+.planner-time{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:#fff;background:rgba(240,165,0,.18);border:1px solid rgba(240,165,0,.35);padding:.32rem .55rem;border-radius:999px;white-space:nowrap}
 
 /* Activity directory - accordion dropdowns */
 .activity-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-bottom:2rem}
@@ -209,16 +234,36 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 
 <!-- NAV -->
 <nav class="nav" id="nav">
+  <a href="#secret-bay">Secret Bay</a>
   <a href="#flights">Flights</a>
   <a href="#schedule">Schedule</a>
   <a href="#activities">Activities</a>
   <a href="#itinerary">Itinerary</a>
   <a href="#map">Map</a>
-  <a href="#hotels">Hotels</a>
-  <a href="#budget">Budget</a>
   <a href="#notes">Notes</a>
   <a href="#practical">Practical Info</a>
+  <a href="#costs">Costs</a>
 </nav>
+
+<!-- SECRET BAY -->
+<section id="secret-bay">
+  <h2 class="section-title">Secret Bay</h2>
+  <p class="section-subtitle">Your home base on Dominica's northwest coast</p>
+
+  <div class="hotel-card reveal">
+    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=900" alt="Secret Bay villa overlooking the Caribbean" loading="lazy">
+    <div class="hotel-info">
+      <div><span class="hotel-badge badge-top">Confirmed Stay</span><span class="hotel-badge badge-luxury">Relais &amp; Chateaux</span></div>
+      <h3>Secret Bay</h3>
+      <p style="color:var(--text-light)">Portsmouth, Northwest Coast</p>
+      <p style="font-size:.95rem;margin-top:1rem">Clifftop villas, private plunge pools, and direct access to the quieter northwestern side of the island. It keeps the stay feeling secluded while still putting Bwa Denn, Zing Zing, Cabrits, and Toucari within easy reach.</p>
+      <div class="amenities">
+        <span class="amenity">Treehouse Villas</span><span class="amenity">Private Plunge Pool</span><span class="amenity">2 Restaurants</span><span class="amenity">Gommier Spa</span><span class="amenity">Beach Snorkeling</span>
+      </div>
+      <p style="font-size:.9rem;color:var(--text-light);margin-top:.75rem"><strong>Trip fit:</strong> roughly 45&ndash;60 minutes from Douglas-Charles Airport, strong dining on property, and a good base if you want the resort itself to be part of the trip rather than just a place to sleep.</p>
+    </div>
+  </div>
+</section>
 
 <!-- FLIGHTS -->
 <section id="flights" style="background:var(--white);max-width:100%;padding:4rem 0">
@@ -323,7 +368,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
           </div>
           <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
             <div style="width:10px;height:10px;border-radius:50%;background:var(--primary);flex-shrink:0"></div>
-            <span style="font-size:.8rem;color:var(--text-light)">2:30 PM &mdash; Hotel check-in</span>
+            <span style="font-size:.8rem;color:var(--text-light)">2:30 PM &mdash; Secret Bay check-in</span>
           </div>
           <div style="background:var(--primary-light);border-radius:10px;padding:.75rem;text-align:center;margin-top:.5rem">
             <div style="font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--primary);font-weight:600">2:30 &ndash; 6:00 PM</div>
@@ -378,7 +423,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <div style="padding:1.25rem">
           <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
             <div style="width:10px;height:10px;border-radius:50%;background:var(--sunset);flex-shrink:0"></div>
-            <span style="font-size:.8rem;color:var(--text-light)">~6:30 AM &mdash; Leave hotel</span>
+            <span style="font-size:.8rem;color:var(--text-light)">~6:30 AM &mdash; Leave Secret Bay</span>
           </div>
           <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
             <div style="width:10px;height:10px;border-radius:50%;background:var(--sunset);flex-shrink:0"></div>
@@ -1000,14 +1045,14 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <div class="time">1:49 PM</div>
         <div class="details">
           <h4>Arrive at Douglas-Charles Airport (AA4304)</h4>
-          <p>Land on Dominica's northeast coast. Transfer to hotel ~40 min.</p>
+          <p>Land on Dominica's northeast coast. Transfer to Secret Bay ~45&ndash;60 min.</p>
         </div>
       </div>
 
       <div class="activity">
         <div class="time">~2:30 PM</div>
         <div class="details">
-          <h4>Check in to Resort</h4>
+          <h4>Check in to Secret Bay</h4>
           <p>Settle in, take in the view.</p>
         </div>
       </div>
@@ -1022,7 +1067,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         </div>
         <div class="option-card">
           <div class="option-header">
-            <div><div class="time-slot">~3:00 PM</div><h4>Relax at Hotel + Sunset</h4><p>Take it easy after travel. Save energy for bigger days ahead.</p></div>
+            <div><div class="time-slot">~3:00 PM</div><h4>Relax at Secret Bay + Sunset</h4><p>Take it easy after travel. Save energy for bigger days ahead.</p></div>
             <div class="price-tag">Free</div>
           </div>
         </div>
@@ -1246,7 +1291,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <div class="time">~6:30 AM</div>
         <div class="details">
           <h4>Check out &amp; Transfer to Airport</h4>
-          <p>Early start &mdash; flight departs at 9:00 AM. Allow 75&ndash;90 min for the drive to Douglas-Charles Airport. Need to be there by ~7:30 AM.</p>
+          <p>Early start &mdash; flight departs at 9:00 AM. Leave Secret Bay by ~6:30 AM to stay comfortable on the 45&ndash;60 minute airport transfer and morning check-in.</p>
         </div>
       </div>
 
@@ -1284,129 +1329,13 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 <section id="map" style="max-width:100%;background:var(--dark);padding:4rem 0">
   <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
     <h2 class="section-title" style="color:#fff">Activity Map</h2>
-    <p class="section-subtitle" style="color:rgba(255,255,255,.6)">Key spots across the island</p>
+    <p class="section-subtitle" style="color:rgba(255,255,255,.6)">Secret Bay is the base. Tap any pin to see the approximate one-way travel time from where you're staying.</p>
+    <div class="map-base-note">
+      <strong>Staying at Secret Bay, Portsmouth</strong>
+      <span>Use the pins for approximate one-way drive times from the resort. Boat-based stops note the road transfer first.</span>
+    </div>
     <div id="mapContainer" style="height:550px;border-radius:var(--radius);box-shadow:0 8px 32px rgba(0,0,0,.3);overflow:hidden"></div>
-  </div>
-</section>
-
-<!-- HOTELS -->
-<section id="hotels">
-  <h2 class="section-title">Where to Stay</h2>
-  <p class="section-subtitle">Dominica's finest eco-luxury resorts</p>
-
-  <div class="hotel-card reveal">
-    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600" alt="Luxury treehouse villa" loading="lazy">
-    <div class="hotel-info">
-      <div><span class="hotel-badge badge-top">TOP PICK</span><span class="hotel-badge badge-luxury">Relais &amp; Chateaux</span></div>
-      <h3>Secret Bay</h3>
-      <p style="color:var(--text-light)">Portsmouth, Northwest Coast</p>
-      <div class="price">From ~$1,200&ndash;$1,650/night</div>
-      <p style="font-size:.9rem">Clifftop treehouse villas, private plunge pools, 180&deg; Caribbean views. Only 6 villas on the property. Two restaurants, Gommier Spa, snorkeling right below.</p>
-      <div class="amenities">
-        <span class="amenity">Treehouse Villas</span><span class="amenity">Private Plunge Pool</span><span class="amenity">2 Restaurants</span><span class="amenity">Gommier Spa</span><span class="amenity">Beach Snorkeling</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="hotel-card reveal">
-    <img src="https://images.unsplash.com/photo-1596394516093-501ba68a0ba6?w=600" alt="Eco resort pool" loading="lazy">
-    <div class="hotel-info">
-      <div><span class="hotel-badge badge-value">Best Value Luxury</span></div>
-      <h3>Jungle Bay</h3>
-      <p style="color:var(--text-light)">Point Mulatre, South Coast</p>
-      <div class="price">From ~$350&ndash;$550/night (all-inclusive available)</div>
-      <p style="font-size:.9rem">85 treehouse-style bungalows overlooking the Atlantic. All-inclusive packages include guided hikes, yoga, diving, and meals. Close to Soufriere dive sites.</p>
-      <div class="amenities">
-        <span class="amenity">85 Bungalows</span><span class="amenity">Infinity Pool</span><span class="amenity">Daily Yoga</span><span class="amenity">Guided Hikes</span><span class="amenity">All-Inclusive</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="hotel-card reveal">
-    <img src="https://images.unsplash.com/photo-1571003123894-1f0594d2b5d9?w=600" alt="Beach resort" loading="lazy">
-    <div class="hotel-info">
-      <div><span class="hotel-badge badge-value">Eco-Wellness</span></div>
-      <h3>Rosalie Bay Resort</h3>
-      <p style="color:var(--text-light)">Rosalie, East Coast</p>
-      <div class="price">From ~$250&ndash;$400/night</div>
-      <p style="font-size:.9rem">Boutique eco-wellness resort on a black sand beach. Sea turtle conservation, river-stone spa, organic garden. Great base for Emerald Pool and Middleham Falls.</p>
-      <div class="amenities">
-        <span class="amenity">Turtle Conservation</span><span class="amenity">River Stone Spa</span><span class="amenity">Black Sand Beach</span><span class="amenity">Organic Garden</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="hotel-card reveal">
-    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600" alt="Historic waterfront hotel" loading="lazy">
-    <div class="hotel-info">
-      <div><span class="hotel-badge" style="background:var(--text);color:#fff">In-Town</span></div>
-      <h3>Fort Young Hotel</h3>
-      <p style="color:var(--text-light)">Roseau Waterfront</p>
-      <div class="price">From ~$180&ndash;$300/night</div>
-      <p style="font-size:.9rem">Only waterfront hotel in Roseau, built within an 18th-century fort. Oceanfront pool, dive center on-site, walking distance to everything in town.</p>
-      <div class="amenities">
-        <span class="amenity">Historic Fort</span><span class="amenity">Ocean Pool</span><span class="amenity">Dive Center</span><span class="amenity">Waterfront Dining</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="hotel-card reveal">
-    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=600" alt="Ocean cabana" loading="lazy">
-    <div class="hotel-info">
-      <div><span class="hotel-badge badge-top">#1 TripAdvisor</span></div>
-      <h3>Pagua Bay House</h3>
-      <p style="color:var(--text-light)">Marigot, Northeast Coast</p>
-      <div class="price">From ~$200&ndash;$350/night</div>
-      <p style="font-size:.9rem">Intimate oceanfront cabanas (only 6!). Modern design, incredible restaurant, close to the airport. Floor-to-ceiling ocean views from every unit.</p>
-      <div class="amenities">
-        <span class="amenity">6 Private Cabanas</span><span class="amenity">Oceanfront</span><span class="amenity">Top Restaurant</span><span class="amenity">Near Airport</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BUDGET -->
-<section id="budget" style="background:var(--white);max-width:100%;padding:4rem 0">
-  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
-    <h2 class="section-title">Trip Budget</h2>
-    <p class="section-subtitle">Running total for 2 travelers &mdash; updates as you lock in plans</p>
-
-    <div class="budget-total">
-      <div class="total-label">Total Trip Cost (2 People)</div>
-      <div class="total-amount">$768</div>
-      <div class="per-person">$384 per person</div>
-    </div>
-
-    <div class="budget-categories">
-      <div class="budget-card">
-        <div class="budget-card-header">Flights<span class="cat-total">$768</span></div>
-        <div class="budget-line"><div><div class="item-name">MIA &rarr; DOM (AA4304) x2</div><div class="item-note">$384/person &middot; Tue Apr 21</div></div><div class="item-cost">$768</div></div>
-        <div class="budget-line"><div><div class="item-name">MEX &rarr; MIA x2</div><div class="item-note">Mon Apr 20 &middot; Evening</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">DOM &rarr; SJU (LF 3203) x2</div><div class="item-note">Fri Apr 24 &middot; 9:00 AM</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">SJU &rarr; EWR (UA 1173) x2</div><div class="item-note">Fri Apr 24 &middot; 1:25 PM</div></div><div class="item-cost pending">TBD</div></div>
-      </div>
-
-      <div class="budget-card">
-        <div class="budget-card-header">Accommodation<span class="cat-total pending" style="color:var(--pending)">TBD</span></div>
-        <div class="budget-line"><div><div class="item-name">MIA overnight hotel (1 night)</div><div class="item-note">Mon Apr 20</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">Dominica hotel (3 nights)</div><div class="item-note">Tue Apr 21 &ndash; Fri Apr 24</div></div><div class="item-cost pending">TBD</div></div>
-      </div>
-
-      <div class="budget-card">
-        <div class="budget-card-header">Activities<span class="cat-total pending" style="color:var(--pending)">TBD</span></div>
-        <div class="budget-line"><div><div class="item-name">Whale watching x2</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">Snorkeling / Diving</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">Hiking guides</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">Spa / extras</div></div><div class="item-cost pending">TBD</div></div>
-      </div>
-
-      <div class="budget-card">
-        <div class="budget-card-header">Transport &amp; Food<span class="cat-total pending" style="color:var(--pending)">TBD</span></div>
-        <div class="budget-line"><div><div class="item-name">Airport transfers (each way)</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">Dinners (3 nights)</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">Taxis / local transport</div></div><div class="item-cost pending">TBD</div></div>
-      </div>
-    </div>
+    <div class="map-planner-grid" id="mapPlanner"></div>
   </div>
 </section>
 
@@ -1454,16 +1383,16 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
           <p style="font-size:.85rem;color:var(--text-light)"><strong>1&ndash;2 weeks ahead.</strong> Dominica is not as heavily trafficked as Bonaire or Cozumel. Most operators can accommodate with some notice.</p>
         </div>
         <div style="padding:1rem;background:var(--primary-light);border-radius:12px">
-          <h4 style="color:var(--primary);font-size:.95rem;margin-bottom:.4rem">Hotels</h4>
-          <p style="font-size:.85rem;color:var(--text-light)"><strong>Luxury (Secret Bay):</strong> 2&ndash;3 months. Only 6 villas. <strong>Mid-range:</strong> 1&ndash;2 months. <strong>Budget/guesthouses:</strong> 2&ndash;4 weeks. April is shoulder season &mdash; Easter 2026 is Apr 5, so by the 21st the rush is past.</p>
+          <h4 style="color:var(--primary);font-size:.95rem;margin-bottom:.4rem">Secret Bay</h4>
+          <p style="font-size:.85rem;color:var(--text-light)"><strong>Book 2&ndash;3 months ahead.</strong> Only a handful of villas are available, and it is one of the island's hardest stays to lock in. April is shoulder season &mdash; Easter 2026 is Apr 5, so by Apr 21 the peak rush is usually past, but the property still books early.</p>
         </div>
         <div style="padding:1rem;background:var(--primary-light);border-radius:12px">
           <h4 style="color:var(--primary);font-size:.95rem;margin-bottom:.4rem">Hiking Guides</h4>
-          <p style="font-size:.85rem;color:var(--text-light)"><strong>1&ndash;2 weeks ahead</strong> for Boiling Lake (guide strongly recommended, practically required). Other hikes &mdash; a few days notice is fine. Your hotel can typically arrange this.</p>
+          <p style="font-size:.85rem;color:var(--text-light)"><strong>1&ndash;2 weeks ahead</strong> for Boiling Lake (guide strongly recommended, practically required). Other hikes &mdash; a few days notice is fine. Secret Bay can typically arrange this.</p>
         </div>
         <div style="padding:1rem;background:var(--primary-light);border-radius:12px">
           <h4 style="color:var(--primary);font-size:.95rem;margin-bottom:.4rem">Airport Transfers</h4>
-          <p style="font-size:.85rem;color:var(--text-light)"><strong>Arrange a few days before arrival.</strong> Most hotels will arrange transfers (often ~$80&ndash;100 one way from DOM to Roseau). No organized airport shuttle service exists.</p>
+          <p style="font-size:.85rem;color:var(--text-light)"><strong>Arrange a few days before arrival.</strong> Secret Bay can coordinate transfers, and private rides on Dominica often run about $80&ndash;100 one way depending on route. No organized airport shuttle service exists.</p>
         </div>
         <div style="padding:1rem;background:var(--primary-light);border-radius:12px">
           <h4 style="color:var(--primary);font-size:.95rem;margin-bottom:.4rem">Restaurants</h4>
@@ -1569,8 +1498,41 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <li>Whale watching tours run 1&ndash;3x/month &mdash; book ASAP</li>
         <li>Dive Dominica: <a href="https://divedominica.com" target="_blank">divedominica.com</a></li>
         <li>Waitukubuli Tours: <a href="https://www.waitukubulitours.com" target="_blank">waitukubulitours.com</a></li>
-        <li>Boiling Lake guide &mdash; arrange through hotel</li>
+        <li>Boiling Lake guide &mdash; arrange through Secret Bay concierge</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- COSTS -->
+<section id="costs" style="background:var(--white);max-width:100%;padding:4rem 0">
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <h2 class="section-title">Costs</h2>
+    <p class="section-subtitle">Private trip pricing for 2 travelers</p>
+
+    <div class="costs-shell locked" id="costsShell">
+      <div class="costs-content">
+        <div class="budget-total">
+          <div class="total-label">Total Trip Cost (2 People)</div>
+          <div class="total-amount" id="costTotalAmount">$0</div>
+          <div class="per-person" id="costPerPerson">$0 per person</div>
+        </div>
+
+        <div class="budget-categories" id="costCategories"></div>
+      </div>
+
+      <div class="costs-lock">
+        <div class="costs-gate">
+          <div class="tag tag-status tag-locked">Private</div>
+          <h3>Unlock Costs</h3>
+          <p>This section stays blurred for everyone else until the password is entered.</p>
+          <form class="costs-form" id="costsForm">
+            <input id="costsPassword" type="password" placeholder="Enter password" autocomplete="current-password">
+            <button type="submit">Unlock</button>
+          </form>
+          <div class="costs-error" id="costsError"></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -1581,6 +1543,70 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 </footer>
 
 <script>
+const TRAVELER_COUNT = 2;
+const COSTS_PASSWORD = 'Costs';
+const tripCosts = [
+  {category:'Flights', name:'MIA \u2192 DOM', note:'Updated flight total', amount:1000},
+  {category:'Stay', name:'Secret Bay', note:'3 nights', amount:4800}
+];
+
+function formatCurrency(amount){
+  return new Intl.NumberFormat('en-US',{
+    style:'currency',
+    currency:'USD',
+    maximumFractionDigits:0
+  }).format(amount);
+}
+
+function renderCosts(){
+  const total = tripCosts.reduce((sum,item)=>sum + item.amount,0);
+  const groups = tripCosts.reduce((map,item)=>{
+    if(!map.has(item.category)) map.set(item.category,[]);
+    map.get(item.category).push(item);
+    return map;
+  },new Map());
+
+  document.getElementById('costTotalAmount').textContent = formatCurrency(total);
+  document.getElementById('costPerPerson').textContent = `${formatCurrency(total / TRAVELER_COUNT)} per person`;
+
+  const categoriesHtml = Array.from(groups.entries()).map(([category,items])=>{
+    const categoryTotal = items.reduce((sum,item)=>sum + item.amount,0);
+    const lines = items.map(item=>`
+      <div class="budget-line">
+        <div>
+          <div class="item-name">${item.name}</div>
+          ${item.note ? `<div class="item-note">${item.note}</div>` : ''}
+        </div>
+        <div class="item-cost">${formatCurrency(item.amount)}</div>
+      </div>
+    `).join('');
+
+    return `
+      <div class="budget-card">
+        <div class="budget-card-header">${category}<span class="cat-total">${formatCurrency(categoryTotal)}</span></div>
+        ${lines}
+      </div>
+    `;
+  }).join('');
+
+  document.getElementById('costCategories').innerHTML = categoriesHtml;
+}
+
+function setCostsUnlocked(unlocked){
+  const costsShell = document.getElementById('costsShell');
+  const costsError = document.getElementById('costsError');
+  costsShell.classList.toggle('locked',!unlocked);
+  costsShell.classList.toggle('unlocked',unlocked);
+  costsError.textContent = '';
+  if(unlocked){
+    sessionStorage.setItem('dominica-costs-unlocked','true');
+  }else{
+    sessionStorage.removeItem('dominica-costs-unlocked');
+  }
+}
+
+const SECRET_BAY_BASE = {lat:15.5830,lng:-61.4730,name:'Secret Bay'};
+
 // Satellite Map via Esri World Imagery
 const map = L.map('mapContainer',{zoomControl:true}).setView([15.42, -61.37], 12);
 L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{
@@ -1596,66 +1622,130 @@ L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/Worl
 
 // POIs with corrected coordinates
 const spots = [
-  // Resorts
-  {lat:15.5830,lng:-61.4730,name:"Secret Bay Resort",desc:"Top pick eco-luxury, Portsmouth",color:"#f0a500",icon:"\u{1F3E1}"},
-  {lat:15.2400,lng:-61.3560,name:"Jungle Bay Resort",desc:"Adventure eco resort, south coast",color:"#f0a500",icon:"\u{1F334}"},
-  {lat:15.3700,lng:-61.2500,name:"Rosalie Bay Resort",desc:"Eco-wellness, east coast",color:"#f0a500",icon:"\u{1F422}"},
-  {lat:15.2960,lng:-61.3870,name:"Fort Young Hotel",desc:"Historic waterfront, Roseau",color:"#f0a500",icon:"\u{1F3E8}"},
-  {lat:15.3830,lng:-61.2640,name:"Pagua Bay House",desc:"#1 TripAdvisor, northeast",color:"#f0a500",icon:"\u{1F3E8}"},
+  // Resort
+  {lat:15.5830,lng:-61.4730,name:"Secret Bay Resort",desc:"Top pick eco-luxury, Portsmouth",color:"#f0a500",icon:"\u{1F3E1}",group:"Base",minutes:0,travelTime:"You are here",travelNote:"This is the trip base for all planning.",isBase:true},
 
   // Towns
-  {lat:15.3017,lng:-61.3881,name:"Roseau",desc:"Capital city — restaurants, shopping, Old Market",color:"#636e72",icon:"\u{1F3D9}\uFE0F"},
-  {lat:15.5710,lng:-61.4570,name:"Portsmouth",desc:"Second town — Cabrits, Indian River",color:"#636e72",icon:"\u{1F3D8}\uFE0F"},
+  {lat:15.3017,lng:-61.3881,name:"Roseau",desc:"Capital city — restaurants, shopping, Old Market",color:"#636e72",icon:"\u{1F3D9}\uFE0F",group:"West Coast & Roseau",minutes:70,travelTime:"1 hr 10 min",travelNote:"Best for dinners, shopping, and most boat departures."},
+  {lat:15.5710,lng:-61.4570,name:"Portsmouth",desc:"Second town — Cabrits, Indian River",color:"#636e72",icon:"\u{1F3D8}\uFE0F",group:"Nearby North",minutes:10,travelTime:"10 min",travelNote:"Closest town for quick errands and casual stops."},
 
   // Airport
-  {lat:15.5469,lng:-61.2999,name:"Douglas-Charles Airport (DOM)",desc:"Main airport, northeast coast",color:"#e74c3c",icon:"\u2708\uFE0F"},
+  {lat:15.5469,lng:-61.2999,name:"Douglas-Charles Airport (DOM)",desc:"Main airport, northeast coast",color:"#e74c3c",icon:"\u2708\uFE0F",group:"East & Northeast",minutes:55,travelTime:"55 min",travelNote:"Main arrival and departure airport."},
 
   // Waterfalls & Gorges
-  {lat:15.3340,lng:-61.3490,name:"Trafalgar Falls",desc:"Twin waterfalls + hot springs",color:"#2980b9",icon:"\u{1F4A7}"},
-  {lat:15.3555,lng:-61.3350,name:"Middleham Falls",desc:"200ft waterfall, moderate hike",color:"#2980b9",icon:"\u{1F4A7}"},
-  {lat:15.3285,lng:-61.3420,name:"Titou Gorge",desc:"Volcanic gorge, cave waterfall — must-do",color:"#2980b9",icon:"\u{1F3CA}"},
-  {lat:15.3670,lng:-61.3150,name:"Emerald Pool",desc:"Easy rainforest walk to grotto pool",color:"#2980b9",icon:"\u{1F33F}"},
-  {lat:15.2830,lng:-61.2940,name:"Victoria Falls",desc:"Remote waterfall, river crossings",color:"#2980b9",icon:"\u{1F4A7}"},
-  {lat:15.2620,lng:-61.2850,name:"Sari Sari Falls",desc:"Dramatic waterfall, southeast",color:"#2980b9",icon:"\u{1F4A7}"},
-  {lat:15.3050,lng:-61.3050,name:"Wavine Cyrique",desc:"Waterfall onto black sand beach — strenuous cliff descent",color:"#2980b9",icon:"\u{1F4A7}"},
+  {lat:15.3340,lng:-61.3490,name:"Trafalgar Falls",desc:"Twin waterfalls + hot springs",color:"#2980b9",icon:"\u{1F4A7}",group:"Interior Waterfalls",minutes:90,travelTime:"1 hr 30 min",travelNote:"Good paired stop with Titou Gorge."},
+  {lat:15.3555,lng:-61.3350,name:"Middleham Falls",desc:"200ft waterfall, moderate hike",color:"#2980b9",icon:"\u{1F4A7}",group:"Interior Waterfalls",minutes:95,travelTime:"1 hr 35 min",travelNote:"Factor extra time for the hike itself."},
+  {lat:15.3285,lng:-61.3420,name:"Titou Gorge",desc:"Volcanic gorge, cave waterfall — must-do",color:"#2980b9",icon:"\u{1F3CA}",group:"Interior Waterfalls",minutes:95,travelTime:"1 hr 35 min",travelNote:"Pairs well with Trafalgar on the same day."},
+  {lat:15.3670,lng:-61.3150,name:"Emerald Pool",desc:"Easy rainforest walk to grotto pool",color:"#2980b9",icon:"\u{1F33F}",group:"East & Northeast",minutes:80,travelTime:"1 hr 20 min",travelNote:"Easier cross-island day than the south coast."},
+  {lat:15.2830,lng:-61.2940,name:"Victoria Falls",desc:"Remote waterfall, river crossings",color:"#2980b9",icon:"\u{1F4A7}",group:"East & Southeast",minutes:115,travelTime:"1 hr 55 min",travelNote:"Longer southeast push before the hike begins."},
+  {lat:15.2620,lng:-61.2850,name:"Sari Sari Falls",desc:"Dramatic waterfall, southeast",color:"#2980b9",icon:"\u{1F4A7}",group:"East & Southeast",minutes:125,travelTime:"2 hr 5 min",travelNote:"Best treated as a full-day outing."},
+  {lat:15.3050,lng:-61.3050,name:"Wavine Cyrique",desc:"Waterfall onto black sand beach — strenuous cliff descent",color:"#2980b9",icon:"\u{1F4A7}",group:"East & Southeast",minutes:130,travelTime:"2 hr 10 min",travelNote:"Very long day once the trail time is added."},
 
   // Hikes
-  {lat:15.3190,lng:-61.3280,name:"Boiling Lake",desc:"World's 2nd largest boiling lake — strenuous 6-7hr hike",color:"#27ae60",icon:"\u{1F30B}"},
-  {lat:15.3480,lng:-61.3350,name:"Freshwater Lake",desc:"Volcanic crater lake, easy walk",color:"#27ae60",icon:"\u{1F4A7}"},
-  {lat:15.3420,lng:-61.3310,name:"Boeri Lake",desc:"Misty crater lake, moderate hike from Freshwater Lake",color:"#27ae60",icon:"\u{1F4A7}"},
-  {lat:15.5200,lng:-61.4400,name:"Syndicate Nature Trail",desc:"Endemic parrot watching — Sisserou & Jaco",color:"#27ae60",icon:"\u{1F99C}"},
-  {lat:15.5850,lng:-61.4700,name:"Cabrits National Park",desc:"Fort Shirley ruins, panoramic views",color:"#27ae60",icon:"\u{1F3F0}"},
+  {lat:15.3190,lng:-61.3280,name:"Boiling Lake",desc:"World's 2nd largest boiling lake — strenuous 6-7hr hike",color:"#27ae60",icon:"\u{1F30B}",group:"Interior Waterfalls",minutes:100,travelTime:"1 hr 40 min",travelNote:"Time shown is to the trailhead before the full hike."},
+  {lat:15.3480,lng:-61.3350,name:"Freshwater Lake",desc:"Volcanic crater lake, easy walk",color:"#27ae60",icon:"\u{1F4A7}",group:"Interior Waterfalls",minutes:95,travelTime:"1 hr 35 min",travelNote:"Useful anchor point for the central highlands."},
+  {lat:15.3420,lng:-61.3310,name:"Boeri Lake",desc:"Misty crater lake, moderate hike from Freshwater Lake",color:"#27ae60",icon:"\u{1F4A7}",group:"Interior Waterfalls",minutes:100,travelTime:"1 hr 40 min",travelNote:"Plan on Freshwater timing plus the hike."},
+  {lat:15.5200,lng:-61.4400,name:"Syndicate Nature Trail",desc:"Endemic parrot watching — Sisserou & Jaco",color:"#27ae60",icon:"\u{1F99C}",group:"Nearby North",minutes:20,travelTime:"20 min",travelNote:"One of the easiest nature outings from Secret Bay."},
+  {lat:15.5850,lng:-61.4700,name:"Cabrits National Park",desc:"Fort Shirley ruins, panoramic views",color:"#27ae60",icon:"\u{1F3F0}",group:"Nearby North",minutes:10,travelTime:"10 min",travelNote:"Easy add-on from the resort or Portsmouth."},
 
   // Snorkel & Dive
-  {lat:15.2310,lng:-61.3580,name:"Champagne Reef",desc:"Volcanic bubble snorkeling",color:"#0c6b58",icon:"\u{1FAE7}"},
-  {lat:15.2130,lng:-61.3660,name:"Scotts Head",desc:"Caribbean meets Atlantic — wall dive & snorkel",color:"#0c6b58",icon:"\u{1F93F}"},
-  {lat:15.2350,lng:-61.3650,name:"Soufriere Pinnacles",desc:"Underwater volcanic spires — top dive site",color:"#0c6b58",icon:"\u{1F420}"},
-  {lat:15.5730,lng:-61.4730,name:"Toucari Bay",desc:"Calm snorkeling, sea turtles",color:"#0c6b58",icon:"\u{1F422}"},
+  {lat:15.2310,lng:-61.3580,name:"Champagne Reef",desc:"Volcanic bubble snorkeling",color:"#0c6b58",icon:"\u{1FAE7}",group:"South Coast",minutes:95,travelTime:"1 hr 35 min",travelNote:"South-coast snorkel day from Secret Bay."},
+  {lat:15.2130,lng:-61.3660,name:"Scotts Head",desc:"Caribbean meets Atlantic — wall dive & snorkel",color:"#0c6b58",icon:"\u{1F93F}",group:"South Coast",minutes:105,travelTime:"1 hr 45 min",travelNote:"Most southern drive on the west coast."},
+  {lat:15.2350,lng:-61.3650,name:"Soufriere Pinnacles",desc:"Underwater volcanic spires — top dive site",color:"#0c6b58",icon:"\u{1F420}",group:"South Coast",minutes:100,travelTime:"1 hr 40 min",travelNote:"Use the same south-coast window as Champagne/Scotts Head."},
+  {lat:15.5730,lng:-61.4730,name:"Toucari Bay",desc:"Calm snorkeling, sea turtles",color:"#0c6b58",icon:"\u{1F422}",group:"Nearby North",minutes:5,travelTime:"5 min",travelNote:"Closest snorkel option from the resort."},
 
   // Beaches
-  {lat:15.4480,lng:-61.2380,name:"Batibou Beach",desc:"Dominica's most beautiful — white sand, turquoise water",color:"#e67e22",icon:"\u{1F3D6}\uFE0F"},
-  {lat:15.3400,lng:-61.4020,name:"Mero Beach",desc:"Most popular beach, dark volcanic sand",color:"#e67e22",icon:"\u{1F3D6}\uFE0F"},
-  {lat:15.4310,lng:-61.2450,name:"Pointe Baptiste",desc:"Red sand beach, dramatic rocky outcrops",color:"#e67e22",icon:"\u{1F3D6}\uFE0F"},
+  {lat:15.4480,lng:-61.2380,name:"Batibou Beach",desc:"Dominica's most beautiful — white sand, turquoise water",color:"#e67e22",icon:"\u{1F3D6}\uFE0F",group:"East & Northeast",minutes:65,travelTime:"1 hr 5 min",travelNote:"A cleaner beach day option than the far south."},
+  {lat:15.3400,lng:-61.4020,name:"Mero Beach",desc:"Most popular beach, dark volcanic sand",color:"#e67e22",icon:"\u{1F3D6}\uFE0F",group:"West Coast & Roseau",minutes:50,travelTime:"50 min",travelNote:"Good west-coast beach stop on the way to or from Roseau."},
+  {lat:15.4310,lng:-61.2450,name:"Pointe Baptiste",desc:"Red sand beach, dramatic rocky outcrops",color:"#e67e22",icon:"\u{1F3D6}\uFE0F",group:"East & Northeast",minutes:70,travelTime:"1 hr 10 min",travelNote:"Nice to pair with Batibou or northeast viewpoints."},
 
   // Whale watching area
-  {lat:15.2900,lng:-61.4300,name:"Whale Watching Area",desc:"Sperm whale encounters off west coast",color:"#1a5276",icon:"\u{1F40B}"},
+  {lat:15.2900,lng:-61.4300,name:"Whale Watching Area",desc:"Sperm whale encounters off west coast",color:"#1a5276",icon:"\u{1F40B}",group:"South Coast",minutes:70,travelTime:"1 hr 10 min to Roseau departures",travelNote:"Most tours launch after the road transfer, then continue by boat."},
 
   // Culture
-  {lat:15.3700,lng:-61.2700,name:"Kalinago Territory",desc:"Indigenous Kalinago cultural village",color:"#8e44ad",icon:"\u{1F3DB}\uFE0F"},
-  {lat:15.3900,lng:-61.4200,name:"Macoucherie Rum Distillery",desc:"Small family-run rum distillery",color:"#8e44ad",icon:"\u{1F943}"},
-  {lat:15.5000,lng:-61.4200,name:"Morne Diablotin",desc:"Dominica's highest peak — very strenuous, 5-7 hrs",color:"#27ae60",icon:"\u{26F0}\uFE0F"},
-  {lat:15.5700,lng:-61.4650,name:"Danglebens Pinnacles",desc:"Submerged pinnacles, nurse sharks — northwest dive site",color:"#0c6b58",icon:"\u{1F420}"},
-  {lat:15.3830,lng:-61.3210,name:"Jacko Falls",desc:"Remote powerful waterfall, often combined with Spanny",color:"#2980b9",icon:"\u{1F4A7}"},
+  {lat:15.3700,lng:-61.2700,name:"Kalinago Territory",desc:"Indigenous Kalinago cultural village",color:"#8e44ad",icon:"\u{1F3DB}\uFE0F",group:"East & Southeast",minutes:95,travelTime:"1 hr 35 min",travelNote:"More realistic as a dedicated east-coast day."},
+  {lat:15.3900,lng:-61.4200,name:"Macoucherie Rum Distillery",desc:"Small family-run rum distillery",color:"#8e44ad",icon:"\u{1F943}",group:"West Coast & Roseau",minutes:35,travelTime:"35 min",travelNote:"Easy west-coast stop without crossing the whole island."},
+  {lat:15.5000,lng:-61.4200,name:"Morne Diablotin",desc:"Dominica's highest peak — very strenuous, 5-7 hrs",color:"#27ae60",icon:"\u{26F0}\uFE0F",group:"Nearby North",minutes:25,travelTime:"25 min",travelNote:"One of the shortest trailhead drives from Secret Bay."},
+  {lat:15.5700,lng:-61.4650,name:"Danglebens Pinnacles",desc:"Submerged pinnacles, nurse sharks — northwest dive site",color:"#0c6b58",icon:"\u{1F420}",group:"Nearby North",minutes:15,travelTime:"15 min to dive launch",travelNote:"Quick access to a north-coast dive or snorkel boat."},
+  {lat:15.3830,lng:-61.3210,name:"Jacko Falls",desc:"Remote powerful waterfall, often combined with Spanny",color:"#2980b9",icon:"\u{1F4A7}",group:"West Coast & Roseau",minutes:75,travelTime:"1 hr 15 min",travelNote:"Longer inland push from the west coast road."},
 ];
+
+let activeRouteLine = null;
+let baseMarker = null;
+
+function showRouteToSpot(spot){
+  if(activeRouteLine){
+    map.removeLayer(activeRouteLine);
+    activeRouteLine = null;
+  }
+  if(spot.isBase) return;
+  activeRouteLine = L.polyline(
+    [[SECRET_BAY_BASE.lat,SECRET_BAY_BASE.lng],[spot.lat,spot.lng]],
+    {color:'#f0a500',weight:2,dashArray:'6 8',opacity:.9}
+  ).addTo(map);
+}
+
+function renderMapPlanner(){
+  const grouped = spots
+    .filter(spot=>!spot.isBase)
+    .reduce((mapGroups,spot)=>{
+      if(!mapGroups.has(spot.group)) mapGroups.set(spot.group,[]);
+      mapGroups.get(spot.group).push(spot);
+      return mapGroups;
+    },new Map());
+
+  const plannerOrder = ['Nearby North','West Coast & Roseau','Interior Waterfalls','South Coast','East & Northeast','East & Southeast'];
+  const plannerHtml = plannerOrder
+    .filter(group=>grouped.has(group))
+    .map(group=>{
+      const entries = grouped.get(group)
+        .sort((a,b)=>a.minutes-b.minutes)
+        .map(spot=>`
+          <div class="planner-line">
+            <div>
+              <div class="planner-name">${spot.name}</div>
+              <div class="planner-note">${spot.travelNote}</div>
+            </div>
+            <div class="planner-time">${spot.travelTime}</div>
+          </div>
+        `)
+        .join('');
+
+      return `
+        <div class="planner-card">
+          <div class="planner-card-header">${group}</div>
+          ${entries}
+        </div>
+      `;
+    })
+    .join('');
+
+  document.getElementById('mapPlanner').innerHTML = plannerHtml;
+}
 
 spots.forEach(s=>{
   const el = document.createElement('div');
   el.style.cssText = `font-size:1.4rem;text-align:center;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5));line-height:1`;
   el.textContent = s.icon;
   const icon = L.divIcon({html:el.outerHTML,iconSize:[28,28],iconAnchor:[14,14],className:''});
-  L.marker([s.lat,s.lng],{icon}).addTo(map)
-    .bindPopup(`<div style="font-size:.95rem"><strong>${s.name}</strong><br><span style="color:#666">${s.desc}</span></div>`,{maxWidth:250});
+  const popupHtml = s.isBase
+    ? `<div style="font-size:.95rem;min-width:210px"><strong>${s.name}</strong><br><span style="color:#666">${s.desc}</span><div style="margin-top:.65rem;padding-top:.65rem;border-top:1px solid #eee"><div style="font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:#888">Trip Base</div><div style="font-weight:600;color:#1a1a2e;margin-top:.2rem">You're staying here</div><div style="font-size:.8rem;color:#666;margin-top:.2rem">All travel times on the map are measured from Secret Bay.</div></div></div>`
+    : `<div style="font-size:.95rem;min-width:210px"><strong>${s.name}</strong><br><span style="color:#666">${s.desc}</span><div style="margin-top:.65rem;padding-top:.65rem;border-top:1px solid #eee"><div style="font-size:.74rem;text-transform:uppercase;letter-spacing:.08em;color:#888">From Secret Bay</div><div style="font-weight:600;color:#1a1a2e;margin-top:.2rem">${s.travelTime}</div><div style="font-size:.8rem;color:#666;margin-top:.2rem">${s.travelNote}</div></div></div>`;
+  const marker = L.marker([s.lat,s.lng],{icon}).addTo(map).bindPopup(popupHtml,{maxWidth:270});
+  marker.on('click',()=>showRouteToSpot(s));
+  if(s.isBase) baseMarker = marker;
 });
+
+map.on('popupclose',()=>{
+  if(activeRouteLine){
+    map.removeLayer(activeRouteLine);
+    activeRouteLine = null;
+  }
+});
+
+renderMapPlanner();
+map.fitBounds(L.latLngBounds(spots.map(spot=>[spot.lat,spot.lng])),{padding:[30,30]});
+if(baseMarker) baseMarker.openPopup();
 
 // Accordion toggle
 function toggleCategory(header){
@@ -1670,6 +1760,23 @@ function toggleCategory(header){
     header.classList.add('open');
   }
 }
+
+renderCosts();
+
+document.getElementById('costsForm').addEventListener('submit',event=>{
+  event.preventDefault();
+  const costsPassword = document.getElementById('costsPassword');
+  const costsError = document.getElementById('costsError');
+
+  if(costsPassword.value === COSTS_PASSWORD){
+    setCostsUnlocked(true);
+    costsPassword.value = '';
+  }else{
+    costsError.textContent = 'Incorrect password.';
+  }
+});
+
+setCostsUnlocked(sessionStorage.getItem('dominica-costs-unlocked') === 'true');
 
 // Nav active state
 const sections=document.querySelectorAll('section[id]');
