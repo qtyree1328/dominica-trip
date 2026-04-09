@@ -3,23 +3,23 @@
 ## Trip Details
 - **Travelers:** 2 people
 - **Dates:** Monday April 21 – Friday April 24, 2026 (3 nights on island)
-- **Flight to Miami:** Sunday April 20, evening (MEX → MIA)
-- **Flight to Dominica:** Monday April 21, AA4304, 10:16 AM → 1:49 PM, MIA → DOM, 3h 33m nonstop, ~$384/person
+- **Flight to Miami:** Monday April 20, evening (MEX → MIA)
+- **Flight to Dominica:** Tuesday April 21, AA4304, 10:16 AM → 1:49 PM, MIA → DOM, 3h 33m nonstop, $384/person — **BOOKED**
 - **Return leg 1:** Friday April 24, LF 3203 (Contour Airlines public charter), 9:00 AM → 10:25 AM, DOM → SJU, 1h 25m, Embraer ERJ145
 - **Return leg 2:** Friday April 24, UA 1173, 1:25 PM → 5:39 PM, SJU → EWR, 4h 14m
 - **Planning from:** Mexico City
 
 ## Date Rules — DO NOT GET THESE WRONG
-- MEX → MIA: **Sunday April 20** (night before)
-- MIA → DOM: **Monday April 21** (arrival day, Day 1)
-- Day 2: **Tuesday April 22**
-- Day 3 (last full day): **Wednesday April 23**
+- MEX → MIA: **Monday April 20** (night before)
+- MIA → DOM: **Tuesday April 21** (arrival day, Day 1) — **BOOKED** AA4304 10:16 AM → 1:49 PM
+- Day 2: **Wednesday April 22**
+- Day 3 (last full day): **Thursday April 23**
 - Day 4 / Departure: **Friday April 24** (early AM flight at 9:00 AM, need to leave hotel ~6:30 AM)
 - The trip is **Apr 21–24**, 3 nights on island
 
 ## Current State of the Page
 - `index.html` is a single-file trip planning page (HTML/CSS/JS, no build step)
-- Sections: Hero → Flights → Activities Directory → Day-by-Day Itinerary → Map → Hotels → Budget → Notes on Dominica → Practical Info
+- Sections: Hero → Flights → Schedule at a Glance → Activities Directory → Day-by-Day Itinerary → Map → Hotels → Budget → Notes on Dominica → Practical Info
 - **No "Overview" section** — it was removed. Do not add it back.
 - **No "Other Options" / alternatives section** — it was removed. Do not add it back.
 - Activities Directory uses accordion dropdowns stacked **vertically in a single column** (7 categories: Hikes, Waterfalls, Snorkel/Scuba, Whale Watching, Beaches, Restaurants, Shopping/Culture)

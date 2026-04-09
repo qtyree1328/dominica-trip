@@ -153,6 +153,11 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 .cat-item a.book-link:hover{background:var(--primary);color:#fff}
 
 /* Responsive */
+/* Schedule grid responsive */
+.schedule-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:900px){.schedule-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.schedule-grid{grid-template-columns:1fr}}
+
 @media(max-width:768px){
   .hotel-card{grid-template-columns:1fr}
   .hotel-card img{height:200px}
@@ -198,13 +203,14 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
   <div class="hero-content">
     <h1>Dominica</h1>
     <p class="subtitle">The Nature Isle of the Caribbean</p>
-    <span class="dates">April 21 &ndash; 24, 2026 &middot; 3 Nights &middot; Trip for 2</span>
+    <span class="dates">Tue Apr 21 &ndash; Fri Apr 24, 2026 &middot; 3 Nights &middot; Trip for 2</span>
   </div>
 </section>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
   <a href="#flights">Flights</a>
+  <a href="#schedule">Schedule</a>
   <a href="#activities">Activities</a>
   <a href="#itinerary">Itinerary</a>
   <a href="#map">Map</a>
@@ -220,7 +226,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
     <h2 class="section-title">Flight Plan</h2>
     <p class="section-subtitle">Mexico City &rarr; Miami &rarr; Dominica and back</p>
 
-    <h3 style="margin:2rem 0 1rem;color:var(--primary)">Outbound &mdash; Sunday / Monday, Apr 20&ndash;21</h3>
+    <h3 style="margin:2rem 0 1rem;color:var(--primary)">Outbound &mdash; Monday / Tuesday, Apr 20&ndash;21</h3>
 
     <div class="flight-card">
       <div class="route">
@@ -230,7 +236,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
       </div>
       <div class="flight-info">
         <strong>American Airlines / Aeromexico</strong>
-        Sun Apr 20 &middot; Evening departure<br>
+        Mon Apr 20 &middot; Evening departure<br>
         ~3.5 hrs &middot; Nonstop<br>
         <span class="tag tag-status tag-pending">Needs booking</span>
       </div>
@@ -244,13 +250,13 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
       </div>
       <div class="flight-info">
         <strong>American Airlines AA4304</strong>
-        Mon Apr 21 &middot; 10:16 AM &rarr; 1:49 PM<br>
-        3h 33m &middot; Nonstop &middot; ~$384/person<br>
-        <span class="tag tag-status tag-pending">Needs booking</span>
+        Tue Apr 21 &middot; 10:16 AM &rarr; 1:49 PM<br>
+        3h 33m &middot; Nonstop &middot; $384/person<br>
+        <span class="tag tag-status tag-locked">Booked</span>
       </div>
     </div>
 
-    <p style="color:var(--text-light);font-size:.9rem;margin:1rem 0"><strong>Tip:</strong> Book a hotel near MIA for the overnight Sunday night.</p>
+    <p style="color:var(--text-light);font-size:.9rem;margin:1rem 0"><strong>Tip:</strong> Book a hotel near MIA for the overnight Monday night.</p>
 
     <h3 style="margin:2rem 0 1rem;color:var(--sunset)">Return &mdash; Friday, Apr 24</h3>
 
@@ -291,6 +297,103 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <li>Douglas-Charles Airport (DOM) is on Dominica's northeast coast &mdash; ~75 min drive to Roseau / west coast resorts</li>
         <li>Book early &mdash; limited frequency (a few flights per week)</li>
       </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONDENSED ITINERARY -->
+<section id="schedule" style="max-width:100%;padding:3rem 0;background:var(--bg)">
+  <div style="max-width:1100px;margin:0 auto;padding:0 1.5rem">
+    <h2 class="section-title">Schedule at a Glance</h2>
+    <p class="section-subtitle">Available time windows for each day on-island</p>
+
+    <div class="schedule-grid">
+
+      <!-- Day 1 -->
+      <div style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden">
+        <div style="background:linear-gradient(135deg,var(--primary),var(--ocean));color:#fff;padding:1rem 1.25rem">
+          <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;opacity:.8;margin-bottom:.2rem">Day 1</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600">Tue, Apr 21</div>
+          <div style="font-size:.8rem;opacity:.85;margin-top:.15rem">Arrival</div>
+        </div>
+        <div style="padding:1.25rem">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--accent);flex-shrink:0"></div>
+            <span style="font-size:.8rem;color:var(--text-light)">1:49 PM &mdash; Land at DOM</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--primary);flex-shrink:0"></div>
+            <span style="font-size:.8rem;color:var(--text-light)">2:30 PM &mdash; Hotel check-in</span>
+          </div>
+          <div style="background:var(--primary-light);border-radius:10px;padding:.75rem;text-align:center;margin-top:.5rem">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--primary);font-weight:600">2:30 &ndash; 6:00 PM</div>
+            <div style="font-size:.75rem;color:var(--text-light);margin-top:.15rem">3.5 hrs free</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden">
+        <div style="background:linear-gradient(135deg,var(--whale),var(--ocean));color:#fff;padding:1rem 1.25rem">
+          <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;opacity:.8;margin-bottom:.2rem">Day 2</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600">Wed, Apr 22</div>
+          <div style="font-size:.8rem;opacity:.85;margin-top:.15rem">Full Day</div>
+        </div>
+        <div style="padding:1.25rem">
+          <div style="background:var(--primary-light);border-radius:10px;padding:.75rem;text-align:center">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--primary);font-weight:600">8:00 AM &ndash; 7:00 PM</div>
+            <div style="font-size:.75rem;color:var(--text-light);margin-top:.15rem">11 hrs free</div>
+          </div>
+          <div style="margin-top:.75rem;font-size:.8rem;color:var(--text-light);line-height:1.5">
+            Morning hike + afternoon whale watching + dinner
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden">
+        <div style="background:linear-gradient(135deg,var(--forest),var(--primary));color:#fff;padding:1rem 1.25rem">
+          <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;opacity:.8;margin-bottom:.2rem">Day 3</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600">Thu, Apr 23</div>
+          <div style="font-size:.8rem;opacity:.85;margin-top:.15rem">Full Day</div>
+        </div>
+        <div style="padding:1.25rem">
+          <div style="background:var(--primary-light);border-radius:10px;padding:.75rem;text-align:center">
+            <div style="font-family:'JetBrains Mono',monospace;font-size:1rem;color:var(--primary);font-weight:600">8:00 AM &ndash; 7:00 PM</div>
+            <div style="font-size:.75rem;color:var(--text-light);margin-top:.15rem">11 hrs free</div>
+          </div>
+          <div style="margin-top:.75rem;font-size:.8rem;color:var(--text-light);line-height:1.5">
+            Big hike or beach day + afternoon adventure + farewell dinner
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div style="background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden">
+        <div style="background:linear-gradient(135deg,var(--sunset),#c0392b);color:#fff;padding:1rem 1.25rem">
+          <div style="font-size:.7rem;text-transform:uppercase;letter-spacing:1.5px;opacity:.8;margin-bottom:.2rem">Day 4</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.15rem;font-weight:600">Fri, Apr 24</div>
+          <div style="font-size:.8rem;opacity:.85;margin-top:.15rem">Departure</div>
+        </div>
+        <div style="padding:1.25rem">
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--sunset);flex-shrink:0"></div>
+            <span style="font-size:.8rem;color:var(--text-light)">~6:30 AM &mdash; Leave hotel</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.75rem">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--sunset);flex-shrink:0"></div>
+            <span style="font-size:.8rem;color:var(--text-light)">9:00 AM &mdash; DOM &rarr; SJU</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem">
+            <div style="width:10px;height:10px;border-radius:50%;background:var(--sunset);flex-shrink:0"></div>
+            <span style="font-size:.8rem;color:var(--text-light)">1:25 PM &mdash; SJU &rarr; EWR</span>
+          </div>
+          <div style="background:#fdebd0;border-radius:10px;padding:.6rem;text-align:center;margin-top:.75rem">
+            <div style="font-size:.8rem;color:var(--sunset);font-weight:600">Travel day &mdash; no free time</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -888,7 +991,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
     <div class="day-block reveal">
       <div class="day-header">
         <span class="day-label">Day 1</span>
-        <span class="day-date">Monday, April 21</span>
+        <span class="day-date">Tuesday, April 21</span>
         <span class="tag tag-status tag-tbd">Planning</span>
       </div>
       <h3 class="day-title">Arrival Day</h3>
@@ -897,12 +1000,12 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <div class="time">1:49 PM</div>
         <div class="details">
           <h4>Arrive at Douglas-Charles Airport (AA4304)</h4>
-          <p>Land on Dominica's northeast coast. Resort transfer ~75 min scenic drive through the mountains.</p>
+          <p>Land on Dominica's northeast coast. Transfer to hotel ~40 min.</p>
         </div>
       </div>
 
       <div class="activity">
-        <div class="time">~3:30 PM</div>
+        <div class="time">~2:30 PM</div>
         <div class="details">
           <h4>Check in to Resort</h4>
           <p>Settle in, take in the view.</p>
@@ -913,13 +1016,13 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <div class="options-label">Afternoon/Evening &mdash; pick one or two</div>
         <div class="option-card">
           <div class="option-header">
-            <div><div class="time-slot">~4:00 PM</div><h4>Champagne Reef Snorkel</h4><p>Volcanic bubbles, warm water, coral gardens. Easy first-day activity.</p><span class="tag tag-dive">Snorkeling</span></div>
+            <div><div class="time-slot">~3:00 PM</div><h4>Champagne Reef Snorkel</h4><p>Volcanic bubbles, warm water, coral gardens. Easy first-day activity.</p><span class="tag tag-dive">Snorkeling</span></div>
             <div class="price-tag">~$30&ndash;50/pp</div>
           </div>
         </div>
         <div class="option-card">
           <div class="option-header">
-            <div><div class="time-slot">~5:00 PM</div><h4>Relax at Resort + Sunset</h4><p>Take it easy after travel. Save energy for bigger days ahead.</p></div>
+            <div><div class="time-slot">~3:00 PM</div><h4>Relax at Hotel + Sunset</h4><p>Take it easy after travel. Save energy for bigger days ahead.</p></div>
             <div class="price-tag">Free</div>
           </div>
         </div>
@@ -952,7 +1055,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
     <div class="day-block reveal">
       <div class="day-header">
         <span class="day-label">Day 2</span>
-        <span class="day-date">Tuesday, April 22</span>
+        <span class="day-date">Wednesday, April 22</span>
         <span class="tag tag-status tag-tbd">Planning</span>
       </div>
       <h3 class="day-title">Whales + Adventure</h3>
@@ -1016,7 +1119,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
     <div class="day-block reveal">
       <div class="day-header">
         <span class="day-label">Day 3</span>
-        <span class="day-date">Wednesday, April 23</span>
+        <span class="day-date">Thursday, April 23</span>
         <span class="tag tag-status tag-tbd">Planning</span>
       </div>
       <h3 class="day-title">Last Full Day</h3>
@@ -1277,16 +1380,16 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
     <div class="budget-categories">
       <div class="budget-card">
         <div class="budget-card-header">Flights<span class="cat-total">$768</span></div>
-        <div class="budget-line"><div><div class="item-name">MIA &rarr; DOM (AA4304) x2</div><div class="item-note">$384/person &middot; Mon Apr 21</div></div><div class="item-cost">$768</div></div>
-        <div class="budget-line"><div><div class="item-name">MEX &rarr; MIA x2</div><div class="item-note">Sun Apr 20 &middot; Evening</div></div><div class="item-cost pending">TBD</div></div>
+        <div class="budget-line"><div><div class="item-name">MIA &rarr; DOM (AA4304) x2</div><div class="item-note">$384/person &middot; Tue Apr 21</div></div><div class="item-cost">$768</div></div>
+        <div class="budget-line"><div><div class="item-name">MEX &rarr; MIA x2</div><div class="item-note">Mon Apr 20 &middot; Evening</div></div><div class="item-cost pending">TBD</div></div>
         <div class="budget-line"><div><div class="item-name">DOM &rarr; SJU (LF 3203) x2</div><div class="item-note">Fri Apr 24 &middot; 9:00 AM</div></div><div class="item-cost pending">TBD</div></div>
         <div class="budget-line"><div><div class="item-name">SJU &rarr; EWR (UA 1173) x2</div><div class="item-note">Fri Apr 24 &middot; 1:25 PM</div></div><div class="item-cost pending">TBD</div></div>
       </div>
 
       <div class="budget-card">
         <div class="budget-card-header">Accommodation<span class="cat-total pending" style="color:var(--pending)">TBD</span></div>
-        <div class="budget-line"><div><div class="item-name">MIA overnight hotel (1 night)</div><div class="item-note">Sun Apr 20</div></div><div class="item-cost pending">TBD</div></div>
-        <div class="budget-line"><div><div class="item-name">Dominica hotel (3 nights)</div><div class="item-note">Mon Apr 21 &ndash; Fri Apr 24</div></div><div class="item-cost pending">TBD</div></div>
+        <div class="budget-line"><div><div class="item-name">MIA overnight hotel (1 night)</div><div class="item-note">Mon Apr 20</div></div><div class="item-cost pending">TBD</div></div>
+        <div class="budget-line"><div><div class="item-name">Dominica hotel (3 nights)</div><div class="item-note">Tue Apr 21 &ndash; Fri Apr 24</div></div><div class="item-cost pending">TBD</div></div>
       </div>
 
       <div class="budget-card">
@@ -1474,7 +1577,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 
 <!-- Footer -->
 <footer style="text-align:center;padding:3rem;color:var(--text-light);font-size:.85rem;background:var(--white)">
-  <p>Dominica Trip Planning &mdash; April 21&ndash;24, 2026 &middot; Trip for 2</p>
+  <p>Dominica Trip Planning &mdash; Tue Apr 21 &ndash; Fri Apr 24, 2026 &middot; Trip for 2</p>
 </footer>
 
 <script>
