@@ -280,10 +280,10 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
         <div class="airport"><div class="code">MIA</div><div class="city">Miami</div></div>
       </div>
       <div class="flight-info">
-        <strong>American Airlines / Aeromexico</strong>
-        Mon Apr 20 &middot; Evening departure<br>
-        ~3.5 hrs &middot; Nonstop<br>
-        <span class="tag tag-status tag-pending">Needs booking</span>
+        <strong>MEX &rarr; MIA</strong>
+        Mon Apr 20 &middot; 7:15 AM &rarr; 12:39 PM<br>
+        $850 total &middot; Confirmation: HRW7S8<br>
+        <span class="tag tag-status tag-locked">Booked</span>
       </div>
     </div>
 
@@ -1546,6 +1546,7 @@ section{max-width:1100px;margin:0 auto;padding:4rem 1.5rem}
 const TRAVELER_COUNT = 2;
 const COSTS_PASSWORD = 'Costs';
 const tripCosts = [
+  {category:'Flights', name:'MEX \u2192 MIA', note:'Mon Apr 20 · 7:15 AM to 12:39 PM · Confirmation HRW7S8', amount:850},
   {category:'Flights', name:'MIA \u2192 DOM', note:'Updated flight total', amount:1000},
   {category:'Stay', name:'Secret Bay', note:'3 nights', amount:4800}
 ];
